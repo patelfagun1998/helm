@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from pydub import AudioSegment
 import re
-
+import time
 def extract_age_gender(line):
     # Pattern to match age and gender (e.g., "01M-BL2")
     pattern = r'(\d{2})([MF])-.*'
@@ -22,15 +22,15 @@ def process_text_file(txt_path):
         raise ValueError(f"Invalid text file format in {txt_path}")
     
     words = lines[0].strip().split()
-    age, gender = extract_age_gender(lines[2])
+    # age, gender = extract_age_gender(lines[2])
     
-    if age is None or gender is None:
-        raise ValueError(f"Could not extract age and gender from {txt_path}")
+    # if age is None or gender is None:
+    #     raise ValueError(f"Could not extract age and gender from {txt_path}")
     
     return {
         "words": words,
-        "Age": age,
-        "Gender": gender
+        # "Age": age,
+        # "Gender": gender
     }
 
 def convert_wav_to_mp3(wav_path, output_path):
@@ -71,6 +71,7 @@ def process_directory(input_path, output_path, speech_condition):
                 json.dump(text_data, f, indent=2)
                 
             print(f"Processed {wav_file}")
+            time.sleep(5)
             
         except Exception as e:
             print(f"Error processing {wav_file}: {str(e)}")
