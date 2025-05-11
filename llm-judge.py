@@ -19,7 +19,6 @@ gemini = genai.GenerativeModel(
     "gemini-2.5-flash-preview-04-17",
 )
 
-Label = Literal["typically_developing", "speech_disorder", ...]  # expand to your set
 
 def load_audio_b64(audio_path: pathlib.Path) -> str:
     """Load an MP3 file and convert it to base64."""
@@ -31,7 +30,7 @@ def load_audio_b64(audio_path: pathlib.Path) -> str:
     retry=retry_if_exception_type((InternalServerError, BadRequestError)),
     reraise=True
 )
-async def query_gpt(audio_b64: str, model_name: str, system_prompt: str) -> Label:
+async def query_gpt(audio_b64: str, model_name: str, system_prompt: str) -> str:
     """
     Send a multimodal chat‑completion request to GPT‑4o or GPT‑4o‑mini.
     """
@@ -45,7 +44,7 @@ async def query_gpt(audio_b64: str, model_name: str, system_prompt: str) -> Labe
                     "content": [
                         {
                             "type": "text",
-                            "text": "Assess this recording and label it. Respond with a JSON object containing a single key 'label' with value either 'articulation' or 'phonological'. Do not include any markdown formatting or code blocks."
+                            "text": "Assess this recording and label it. Respond with a JSON object containing a single key 'label' with value either 'substitution', 'omission', 'addition', or 'stuttering'. Do not include any markdown formatting or code blocks."
                         },
                         {
                             "type": "input_audio",
@@ -67,7 +66,7 @@ async def query_gpt(audio_b64: str, model_name: str, system_prompt: str) -> Labe
         result = json.loads(content)
         if "label" not in result:
             raise ValueError(f"Response missing 'label' field: {content}")
-        if result["label"] not in ["articulation", "phonological"]:
+        if result["label"] not in ["substitution", "omission", "addition", "stuttering"]:
             raise ValueError(f"Invalid label value: {result['label']}")
         return result["label"]
             
@@ -91,7 +90,7 @@ async def query_gpt(audio_b64: str, model_name: str, system_prompt: str) -> Labe
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True
 )
-async def query_gemini(audio_b64: str, system_prompt: str) -> Label:
+async def query_gemini(audio_b64: str, system_prompt: str) -> str:
     start_time = time.time()
     try:
         # Run the synchronous Gemini call in a thread pool
@@ -124,11 +123,10 @@ async def annotate_one(audio_path: pathlib.Path, meta_path: pathlib.Path):
         with meta_path.open() as f:
             meta = json.load(f)
         
-        # Get words and join them if it's a list
-        # if disorder_type key is present, skip
-        if "disorder_type" in meta:
+        if "disorder_symptom" in meta:
             print(f"Skipping {audio_path.name} because disorder_type key is present")
             return
+        
         words = meta.get('words', [])
         if isinstance(words, list):
             words = ' '.join(words)
@@ -139,13 +137,12 @@ async def annotate_one(audio_path: pathlib.Path, meta_path: pathlib.Path):
 An audio recording will be provided, typically consisting of a speech prompt 
 from a pathologist followed by a child's repetition. 
 Based on your professional expertise:
-
-1. Assess the child's speech in the recording for signs of typical development 
-or potential speech-language disorder.
-
-2. Return a JSON object with a single key 'label' whose value is EXACTLY one of these two options:
-A - 'articulation' (difficulty producing specific speech sounds correctly, such as substituting, omitting, or distorting sounds)
-B - 'phonological' (difficulty understanding and using the sound system of language, affecting sounds of a particular type)
+1. Assess the child's speech in the recording and recognize any abnormal features in the child's speech.
+2. Return a JSON object with a single key 'label' whose value is EXACTLY one of these four options:
+'substitution' is when the child substitutes one word/phrase/syllable for another.
+'omission' is when the child omits one word/phrase/syllable.
+'addition' is when the child adds one word/phrase/syllable.
+'stuttering' is when the child stutters, has difficulty speaking, repeats syllables/words/phrases or prolongs the duration of syllables/words/phrasesd.
 
 The prompt text the child is trying to repeat is as follows: {words}"""
         )
@@ -164,11 +161,9 @@ The prompt text the child is trying to repeat is as follows: {words}"""
         majority = collections.Counter(votes).most_common(1)[0][0]
 
         # Update JSON with results
-        meta["disorder_type"] = majority
+        meta["disorder_symptom"] = majority
 
         meta_path.write_text(json.dumps(meta, indent=2))
-        # print full path
-        # print(f"✓ {meta_path.resolve()}: {majority}")
     except Exception as e:
         print(f"Error processing {audio_path.name}: {str(e)}")
         meta["error"] = str(e)
@@ -184,12 +179,6 @@ async def main(dataset_dir: str = "data"):
         for mp3 in pairs
     ]
     
-    # Optimal batch size for M2 MacBook Air
-    # Considering:
-    # - 8GB/16GB unified memory
-    # - 8 CPU cores
-    # - 3 API calls per file
-    # - Audio data size
     batch_size = 8  # Process 8 files at a time
     
     for i in range(0, len(tasks), batch_size):
