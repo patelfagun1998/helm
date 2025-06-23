@@ -14,7 +14,7 @@ def main():
     # Example usage of the AudioGeminiProcessor
     
     # Set your API key (or use environment variable GEMINI_API_KEY)
-    api_key = "AIzaSyBWoj4xvszAb4Mp-elabYsfFC978NUl5Cs"  # Replace with your actual API key
+    api_key = ""  # Replace with your actual API key
     
     # Input and output directories
     input_directory = "/Users/fagunpatel/Google Drive/My Drive/SpeechData/scenarios/speech_disorder_breakdown/processed-core-uxssd"  # Replace with your input directory
