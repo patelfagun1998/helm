@@ -1,0 +1,86 @@
+Audio Gemini Processor Usage Guide
+==================================
+
+This script processes pairs of .mp3 and .json files using Google's Gemini 2.0 Flash model
+for dual speech disorder analysis: disorder type classification and symptom analysis.
+
+SETUP:
+------
+1. Install dependencies:
+   pip install google-generativeai
+
+2. Set up your Gemini API key:
+   export GEMINI_API_KEY="your-api-key-here"
+   
+   Or pass it as a command line argument with --api-key
+
+USAGE:
+------
+Basic usage (with default prompts):
+   python audio_gemini_processor.py /path/to/input/dir /path/to/output/dir
+
+Dry run (check directories and see what would be processed):
+   python audio_gemini_processor.py /path/to/input/dir /path/to/output/dir --dry-run
+
+With custom prompts:
+   python audio_gemini_processor.py /path/to/input/dir /path/to/output/dir \
+     --max-pairs 10 \
+     --disorder-type-prompt "Classify disorder type: {transcription}" \
+     --disorder-symptom-prompt "Identify symptoms: {transcription}" \
+     --api-key "your-api-key" \
+     --dry-run
+
+ARGUMENTS:
+----------
+input_dir                    - Directory containing .mp3 and .json file pairs
+output_dir                   - Directory where processed JSON files will be saved
+--max-pairs                  - Maximum number of pairs to process (default: 20)
+--disorder-type-prompt       - Custom prompt for disorder type classification
+--disorder-symptom-prompt    - Custom prompt for disorder symptom analysis
+--api-key                    - Gemini API key (optional if GEMINI_API_KEY env var is set)
+--dry-run                    - Show what would be processed without making API calls
+
+EXAMPLE FILE STRUCTURE:
+-----------------------
+input_dir/
+├── audio1.mp3
+├── audio1.json
+├── subfolder/
+│   ├── audio2.mp3
+│   └── audio2.json
+└── audio3.mp3
+    audio3.json
+
+The script will:
+1. Find all matching .mp3/.json pairs (same base filename)
+2. Randomly select up to 20 pairs (or --max-pairs)
+3. Send each audio file to Gemini TWICE with different prompts:
+   - First for disorder type classification
+   - Second for symptom analysis
+4. Add both responses to the JSON files with separate keys
+5. Save all updated JSON files directly to the output directory (flattened structure)
+
+OUTPUT:
+-------
+Each processed JSON file will have these new fields:
+- "disorder_type_classification": Gemini's disorder type analysis
+- "disorder_symptom_analysis": Gemini's symptom analysis
+- "input_audio_path": Full path to the original audio file
+- "input_json_path": Full path to the original JSON file
+
+All output files are saved directly to the output directory regardless of 
+their original subdirectory structure.
+
+DEFAULT PROMPTS:
+----------------
+If no custom prompts are provided, the script uses specialized default prompts:
+
+Disorder Type Classification:
+- Focuses on identifying the main category of speech disorder
+- Provides confidence levels and key indicators
+- Considers primary and secondary disorder types
+
+Disorder Symptom Analysis:
+- Identifies specific symptoms and their severity
+- Assesses frequency and patterns
+- Provides clinical observations and intervention recommendations 
