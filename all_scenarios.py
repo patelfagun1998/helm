@@ -13,28 +13,28 @@ MODEL_DATA = {
     'gpt-4o-audio': {
         'disorder_diagnosis': 0.44,
         'asr_disorder_diagnosis': 0.02,
-        'disorder_type_classification': 0.29,
+        'disorder_type_classification': 0.36,
         'disorder_symptom_classification': 0.18,
         'transcription_accuracy': 2.25
     },
     'gemini-2.0-flash': {
         'disorder_diagnosis': 0.46,
         'asr_disorder_diagnosis': 0.00,
-        'disorder_type_classification': 0.29,
+        'disorder_type_classification': 0.46,
         'disorder_symptom_classification': 0.18,
         'transcription_accuracy': 0.94
     },
     'gemini-2.0-flash-lite': {
         'disorder_diagnosis': 0.46,
         'asr_disorder_diagnosis': 0.01,
-        'disorder_type_classification': 0.18,
+        'disorder_type_classification': 0.19,
         'disorder_symptom_classification': 0.41,
         'transcription_accuracy': 0.83
     },
     'gpt-4o-mini-audio': {
         'disorder_diagnosis': 0.20,
         'asr_disorder_diagnosis': 0.07,
-        'disorder_type_classification': 0.13,
+        'disorder_type_classification': 0.15,
         'disorder_symptom_classification': 0.43,
         'transcription_accuracy': 1.40
     },

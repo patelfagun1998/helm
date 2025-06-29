@@ -171,7 +171,7 @@ plot_configs = [
     
     # Language Analysis
     (english_scores_f1, french_scores_f1, 'English', 'French', 
-     color_language, 'Disorder Diagnosis', 'Macro F1 Score ↑', x_lim, False),
+     color_language, 'Disorder Diagnosis', 'Micro F1 Score ↑', x_lim, False),
     (english_scores_wer, french_scores_wer, 'English WER', 'French', 
      color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False),
 ]
