@@ -76,43 +76,43 @@ model_data = {
         'reasoning': {'type_f1': 0.36, 'reasoning_type_f1': 0.20, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.36, 'noisy_type_f1': 0.29, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.30, 'male_type_f1': 0.41, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.0, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.33, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 5.66}
     },
     'gemini-2.0-flash': {
         'reasoning': {'type_f1': 0.46, 'reasoning_type_f1': 0.34, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.25},
         'perturbation': {'type_f1': 0.46, 'noisy_type_f1': 0.33, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.564, 'female_binary_f1': 0.30, 'male_type_f1': 0.44, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.0, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.35, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 4.7}
     },
     'gemini-2.0-flash-lite': {
         'reasoning': {'type_f1': 0.19, 'reasoning_type_f1': 0.17, 'symp_f1': 0.41, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.19, 'noisy_type_f1': 0.14, 'symp_f1': 0.41, 'noisy_symp_f1': 0.4},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.31, 'male_type_f1': 0.24, 'female_type_f1': 0.09},
-        'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.0, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.49, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 3.27}
     },
     'gpt-4o-mini-audio': {
         'reasoning': {'type_f1': 0.15, 'reasoning_type_f1': 0.04, 'symp_f1': 0.43, 'reasoning_symp_f1': 0.006},
         'perturbation': {'type_f1': 0.15, 'noisy_type_f1': 0.05, 'symp_f1': 0.43, 'noisy_symp_f1': 0.42},
         'gender': {'male_binary_f1': 0.22, 'female_binary_f1': 0.16, 'male_type_f1': 0.17, 'female_type_f1': 0.11},
-        'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.0, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.02, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 5.94}
     },
     'gpt-4o-audio-transcribe': {
         'reasoning': {'type_f1': 0.41, 'reasoning_type_f1': 0.30, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.39},
         'perturbation': {'type_f1': 0.41, 'noisy_type_f1': 0.36, 'symp_f1': 0.31, 'noisy_symp_f1': 0.30},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.34, 'male_type_f1': 0.49, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.0, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.48, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 2.73}
     },
     'gpt-4o-audio-mini-transcribe': {
         'reasoning': {'type_f1': 0.42, 'reasoning_type_f1': 0.34, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.35},
         'perturbation': {'type_f1': 0.42, 'noisy_type_f1': 0.34, 'symp_f1': 0.31, 'noisy_symp_f1': 0.31},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.29, 'male_type_f1': 0.5, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.6, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.48, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 2.67}
     },
     'whispr+gpt4o': {
         'reasoning': {'type_f1': 0.43, 'reasoning_type_f1': 0.32, 'symp_f1': 0.36, 'reasoning_symp_f1': 0.44},
         'perturbation': {'type_f1': 0.43, 'noisy_type_f1': 0.48, 'symp_f1': 0.36, 'noisy_symp_f1': 0.40},
         'gender': {'male_binary_f1': 0.29, 'female_binary_f1': 0.35, 'male_type_f1': 0.512, 'female_type_f1': 0.38},
-        'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.0, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 0.0}
+        'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.16, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 7.16}
     }
 }
 
@@ -175,19 +175,19 @@ plot_configs = [
     
     # Perturbation Analysis
     (type_f1_pert, noisy_type_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Disorder Type Diagnosis', 'F1 Score ↑', x_lim, False, None, None, None),
+     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
     (symp_f1_pert, noisy_symp_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Symptom Diagnosis', 'F1 Score ↑', x_lim, False, None, None, None),
+     color_perturbation, 'Symptom Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
     
     # Gender Analysis
     (male_binary_f1, female_binary_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Diagnosis', 'F1 Score ↑', x_lim, False, None, None, None),
+     color_gender, 'Disorder Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
     (male_type_f1, female_type_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Type Diagnosis', 'F1 Score ↑', x_lim, False, None, None, None),
+     color_gender, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
     
     # Language Analysis (3 languages)
     (english_scores_f1, french_scores_f1, 'English', 'French', 
-     color_language, 'Disorder Diagnosis', 'F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2]),
+     color_language, 'Disorder Diagnosis', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2]),
     (english_scores_wer, french_scores_wer, 'English', 'French', 
      color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2]),
 ]
@@ -237,3 +237,74 @@ plt.subplots_adjust(bottom=0.18)  # Make more room for larger legends at bottom
 
 # Show plot
 plt.show()
+
+# --- Create 4 Separate Figures with 2 Subplots Each ---
+figure_titles = [
+    'Reasoning Analysis',
+    'Perturbation Analysis', 
+    'Gender Analysis',
+    'Language Analysis'
+]
+
+# Group plot configurations into pairs
+plot_pairs = [
+    plot_configs[0:2],  # Reasoning analysis (2 plots)
+    plot_configs[2:4],  # Perturbation analysis (2 plots)
+    plot_configs[4:6],  # Gender analysis (2 plots)
+    plot_configs[6:8],  # Language analysis (2 plots)
+]
+
+# Create 4 separate figures
+for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs)):
+    # Create figure with 2 subplots
+    fig_pair, axes_pair = plt.subplots(1, 2, figsize=(16, 6))
+    
+    # Store legend handles for this figure
+    pair_legend_handles = {}
+    pair_legend_labels = {}
+    
+    # Plot both subplots in this figure
+    for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, scores3, label3, color3) in enumerate(plot_pair):
+        # Determine which subplot to show y-axis labels on (first one only)
+        show_yticklabels = (i == 0)
+        
+        handles = plot_horizontal_grouped_bar_chart(
+            axes_pair[i], models, scores1, scores2, label1, label2,
+            colors[0], colors[1], title, x_label, xlim, bar_height,
+            show_yticklabels=show_yticklabels, return_legend_handles=True,
+            scores3=scores3, label3=label3, color3=color3
+        )
+        
+        # Store legend handles for this figure
+        if scores3 is not None:
+            # Three-category plot
+            color_key = tuple(colors)
+            if color_key not in pair_legend_handles:
+                pair_legend_handles[color_key] = handles
+                pair_legend_labels[color_key] = [label1, label2, label3]
+        else:
+            # Two-category plot
+            color_key = tuple(colors)
+            if color_key not in pair_legend_handles:
+                pair_legend_handles[color_key] = handles
+                pair_legend_labels[color_key] = [label1, label2]
+    
+    # Create legend for this figure
+    legend_keys = list(pair_legend_handles.keys())
+    if len(legend_keys) > 0:
+        key = legend_keys[0]  # Should only be one unique color scheme per figure pair
+        labels = pair_legend_labels[key]
+        ncol = len(labels)
+        fig_pair.legend(pair_legend_handles[key], labels, 
+                       loc='lower center', bbox_to_anchor=(0.5, 0.02), 
+                       ncol=ncol, fontsize=12, frameon=True)
+    
+    # Set overall figure title
+    fig_pair.suptitle(fig_title, fontsize=14, fontweight='bold', y=0.95)
+    
+    # Adjust layout
+    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.15, top=0.88)  # Make room for title and legend
+    
+    # Show the figure
+    plt.show()
