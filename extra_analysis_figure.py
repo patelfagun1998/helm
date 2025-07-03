@@ -13,15 +13,30 @@ plt.rcParams['text.usetex'] = False
 def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, label1, label2,
                                       color1, color2, title, x_label, xlim_upper, bar_height,
                                       show_yticklabels=True, return_legend_handles=False,
-                                      scores3=None, label3=None, color3=None):
+                                      scores3=None, label3=None, color3=None,
+                                      scores4=None, label4=None, color4=None):
     """
     Plots a horizontal grouped bar chart on the given axes.
-    Can handle 2 or 3 score categories.
+    Can handle 2, 3, or 4 score categories.
     """
     num_models = len(models)
-    y_pos = np.arange(num_models)  # Positions for each model group on the y-axis
+    # Add spacing between model groups by using a larger multiplier
+    spacing_factor = 1.5  # Increase spacing between model groups
+    y_pos = np.arange(num_models) * spacing_factor  # Positions for each model group on the y-axis
 
-    if scores3 is not None:
+    if scores4 is not None:
+        # Four categories - use smaller bar height and adjust positions
+        bar_height_4way = bar_height * 0.6  # Reduce bar thickness for 4-way comparison
+        bar1 = ax.barh(y_pos - 1.5*bar_height_4way, scores1, height=bar_height_4way,
+                       label=label1, color=color1, align='center')
+        bar2 = ax.barh(y_pos - 0.5*bar_height_4way, scores2, height=bar_height_4way,
+                       label=label2, color=color2, align='center')
+        bar3 = ax.barh(y_pos + 0.5*bar_height_4way, scores3, height=bar_height_4way,
+                       label=label3, color=color3, align='center')
+        bar4 = ax.barh(y_pos + 1.5*bar_height_4way, scores4, height=bar_height_4way,
+                       label=label4, color=color4, align='center')
+        legend_handles = [bar1, bar2, bar3, bar4]
+    elif scores3 is not None:
         # Three categories - use smaller bar height and adjust positions
         bar_height_3way = bar_height * 0.7  # Reduce bar thickness for 3-way comparison
         bar1 = ax.barh(y_pos - bar_height_3way, scores1, height=bar_height_3way,
@@ -76,43 +91,43 @@ model_data = {
         'reasoning': {'type_f1': 0.36, 'reasoning_type_f1': 0.20, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.36, 'noisy_type_f1': 0.29, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.30, 'male_type_f1': 0.41, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.33, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 5.66}
+        'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.33, 'spanish_f1': 0.09, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 5.66, 'spanish_wer': 2.19}
     },
     'gemini-2.0-flash': {
         'reasoning': {'type_f1': 0.46, 'reasoning_type_f1': 0.34, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.25},
         'perturbation': {'type_f1': 0.46, 'noisy_type_f1': 0.33, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.564, 'female_binary_f1': 0.30, 'male_type_f1': 0.44, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.35, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 4.7}
+        'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.35, 'spanish_f1': 0.20, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 4.7, 'spanish_wer': 1.5}
     },
     'gemini-2.0-flash-lite': {
         'reasoning': {'type_f1': 0.19, 'reasoning_type_f1': 0.17, 'symp_f1': 0.41, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.19, 'noisy_type_f1': 0.14, 'symp_f1': 0.41, 'noisy_symp_f1': 0.4},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.31, 'male_type_f1': 0.24, 'female_type_f1': 0.09},
-        'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.49, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 3.27}
+        'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.49, 'spanish_f1': 0.33, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 3.27, 'spanish_wer': 1.72}
     },
     'gpt-4o-mini-audio': {
         'reasoning': {'type_f1': 0.15, 'reasoning_type_f1': 0.04, 'symp_f1': 0.43, 'reasoning_symp_f1': 0.006},
         'perturbation': {'type_f1': 0.15, 'noisy_type_f1': 0.05, 'symp_f1': 0.43, 'noisy_symp_f1': 0.42},
         'gender': {'male_binary_f1': 0.22, 'female_binary_f1': 0.16, 'male_type_f1': 0.17, 'female_type_f1': 0.11},
-        'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.02, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 5.94}
+        'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.02, 'spanish_f1': 0.0, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 5.94, 'spanish_wer': 5.33}
     },
     'gpt-4o-audio-transcribe': {
         'reasoning': {'type_f1': 0.41, 'reasoning_type_f1': 0.30, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.39},
         'perturbation': {'type_f1': 0.41, 'noisy_type_f1': 0.36, 'symp_f1': 0.31, 'noisy_symp_f1': 0.30},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.34, 'male_type_f1': 0.49, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.48, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 2.73}
+        'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.27, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 2.73, 'spanish_wer': 1.66}
     },
     'gpt-4o-audio-mini-transcribe': {
         'reasoning': {'type_f1': 0.42, 'reasoning_type_f1': 0.34, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.35},
         'perturbation': {'type_f1': 0.42, 'noisy_type_f1': 0.34, 'symp_f1': 0.31, 'noisy_symp_f1': 0.31},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.29, 'male_type_f1': 0.5, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.48, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 2.67}
+        'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.22, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 2.67, 'spanish_wer': 1.66}
     },
     'whispr+gpt4o': {
         'reasoning': {'type_f1': 0.43, 'reasoning_type_f1': 0.32, 'symp_f1': 0.36, 'reasoning_symp_f1': 0.44},
         'perturbation': {'type_f1': 0.43, 'noisy_type_f1': 0.48, 'symp_f1': 0.36, 'noisy_symp_f1': 0.40},
         'gender': {'male_binary_f1': 0.29, 'female_binary_f1': 0.35, 'male_type_f1': 0.512, 'female_type_f1': 0.38},
-        'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.16, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 7.16}
+        'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.16, 'spanish_f1': 0.04, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 7.16, 'spanish_wer': 2.135}
     }
 }
 
@@ -123,7 +138,7 @@ models = list(model_data.keys())
 color_reasoning = ['#2CA4A2', '#D84546']  # Zero-shot vs Reasoning
 color_perturbation = ['#1f77b4', '#ff7f0e']  # Unperturbed vs Perturbed
 color_gender = ['#ea5545', '#87bc45']  # Male vs Female
-color_language = ['#edbf33', '#f46a9b', '#27aeef']  # English vs French vs Dutch
+color_language = ['#edbf33', '#f46a9b', '#27aeef', '#ef476f']  # English vs French vs Dutch vs Spanish
 
 bar_height = 0.42
 x_lim = 0.6
@@ -157,9 +172,11 @@ male_type_f1, female_type_f1 = extract_data_arrays(models, model_data, 'gender.m
 english_scores_f1, french_scores_f1 = extract_data_arrays(models, model_data, 'language.english_f1', 'language.french_f1')
 english_scores_wer, french_scores_wer = extract_data_arrays(models, model_data, 'language.english_wer', 'language.french_wer')
 
-# Extract Dutch data arrays
+# Extract Dutch and Spanish data arrays
 dutch_scores_f1 = extract_data_arrays(models, model_data, 'language.dutch_f1')
 dutch_scores_wer = extract_data_arrays(models, model_data, 'language.dutch_wer')
+spanish_scores_f1 = extract_data_arrays(models, model_data, 'language.spanish_f1')
+spanish_scores_wer = extract_data_arrays(models, model_data, 'language.spanish_wer')
 
 # --- Create the figure and subplots ---
 fig_width, fig_height = 22, 6  # Made slightly taller to accommodate legends
@@ -169,27 +186,27 @@ fig, axes = plt.subplots(1, 8, figsize=(fig_width, fig_height))
 plot_configs = [
     # Reasoning Analysis
     (type_f1, reasoning_type_f1, 'Zero-Shot', 'Zero-Shot w/ Reasoning', 
-     color_reasoning, 'Disorder Type Diagnosis', 'Exact Match Score ↑', x_lim, True, None, None, None),
+     color_reasoning, 'Disorder Type Diagnosis', 'Exact Match Score ↑', x_lim, True, None, None, None, None, None, None),
     (symp_f1, reasoning_symp_f1, 'Zero-Shot Inference', '0-Shot Inference w/ Reasoning', 
-     color_reasoning, 'Symptom Diagnosis', 'Exact Match Score ↑', x_lim, False, None, None, None),
+     color_reasoning, 'Symptom Diagnosis', 'Exact Match Score ↑', x_lim, False, None, None, None, None, None, None),
     
     # Perturbation Analysis
     (type_f1_pert, noisy_type_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
+     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     (symp_f1_pert, noisy_symp_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Symptom Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
+     color_perturbation, 'Symptom Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     
     # Gender Analysis
     (male_binary_f1, female_binary_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
+     color_gender, 'Disorder Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     (male_type_f1, female_type_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None),
+     color_gender, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     
-    # Language Analysis (3 languages)
+    # Language Analysis (4 languages)
     (english_scores_f1, french_scores_f1, 'English', 'French', 
-     color_language, 'Disorder Diagnosis', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2]),
+     color_language, 'Disorder Diagnosis', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2], spanish_scores_f1, 'Spanish', color_language[3]),
     (english_scores_wer, french_scores_wer, 'English', 'French', 
-     color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2]),
+     color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2], spanish_scores_wer, 'Spanish', color_language[3]),
 ]
 
 # Store legend handles for each unique color scheme
@@ -197,16 +214,23 @@ legend_handles = {}
 legend_labels = {}
 
 # Plot all subplots
-for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, scores3, label3, color3) in enumerate(plot_configs):
+for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, scores3, label3, color3, scores4, label4, color4) in enumerate(plot_configs):
     handles = plot_horizontal_grouped_bar_chart(
         axes[i], models, scores1, scores2, label1, label2,
         colors[0], colors[1], title, x_label, xlim, bar_height,
         show_yticklabels=show_y, return_legend_handles=True,
-        scores3=scores3, label3=label3, color3=color3
+        scores3=scores3, label3=label3, color3=color3,
+        scores4=scores4, label4=label4, color4=color4
     )
     
     # Store unique legend handles
-    if scores3 is not None:
+    if scores4 is not None:
+        # Four-category plot
+        color_key = tuple(colors)
+        if color_key not in legend_handles:
+            legend_handles[color_key] = handles
+            legend_labels[color_key] = [label1, label2, label3, label4]
+    elif scores3 is not None:
         # Three-category plot
         color_key = tuple(colors)
         if color_key not in legend_handles:
@@ -236,6 +260,7 @@ plt.tight_layout(pad=1.5, w_pad=2.5)
 plt.subplots_adjust(bottom=0.18)  # Make more room for larger legends at bottom
 
 # Show plot
+plt.savefig('extra_analysis_figure.png', dpi=300)
 plt.show()
 
 # --- Create 4 Separate Figures with 2 Subplots Each ---
@@ -256,15 +281,15 @@ plot_pairs = [
 
 # Create 4 separate figures
 for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs)):
-    # Create figure with 2 subplots
-    fig_pair, axes_pair = plt.subplots(1, 2, figsize=(16, 6))
+    # Create figure with 2 subplots - make it taller for better spacing
+    fig_pair, axes_pair = plt.subplots(1, 2, figsize=(16, 8))
     
     # Store legend handles for this figure
     pair_legend_handles = {}
     pair_legend_labels = {}
     
     # Plot both subplots in this figure
-    for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, scores3, label3, color3) in enumerate(plot_pair):
+    for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, scores3, label3, color3, scores4, label4, color4) in enumerate(plot_pair):
         # Determine which subplot to show y-axis labels on (first one only)
         show_yticklabels = (i == 0)
         
@@ -272,11 +297,18 @@ for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs))
             axes_pair[i], models, scores1, scores2, label1, label2,
             colors[0], colors[1], title, x_label, xlim, bar_height,
             show_yticklabels=show_yticklabels, return_legend_handles=True,
-            scores3=scores3, label3=label3, color3=color3
+            scores3=scores3, label3=label3, color3=color3,
+            scores4=scores4, label4=label4, color4=color4
         )
         
         # Store legend handles for this figure
-        if scores3 is not None:
+        if scores4 is not None:
+            # Four-category plot
+            color_key = tuple(colors)
+            if color_key not in pair_legend_handles:
+                pair_legend_handles[color_key] = handles
+                pair_legend_labels[color_key] = [label1, label2, label3, label4]
+        elif scores3 is not None:
             # Three-category plot
             color_key = tuple(colors)
             if color_key not in pair_legend_handles:
@@ -302,9 +334,12 @@ for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs))
     # Set overall figure title
     fig_pair.suptitle(fig_title, fontsize=14, fontweight='bold', y=0.95)
     
-    # Adjust layout
+    # Adjust layout - give more space for the taller figure
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.15, top=0.88)  # Make room for title and legend
     
     # Show the figure
+    #save language figure
+    if fig_title == 'Language Analysis':
+        plt.savefig('language_analysis.png', dpi=300)
     plt.show()

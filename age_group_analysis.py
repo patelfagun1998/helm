@@ -153,6 +153,8 @@ plt.tight_layout(pad=1.5, w_pad=2.5)
 plt.subplots_adjust(bottom=0.18)  # Make room for legend at bottom
 
 # Show plot
+plt.savefig('age_group_analysis.png', dpi=300)
+
 plt.show()
 
 # --- Print summary statistics ---

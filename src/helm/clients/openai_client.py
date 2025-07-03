@@ -549,7 +549,7 @@ class OpenAITranscriptionThenCompletionClient(Client):
                 raise ValueError(f"Unrecognized media type: {media_object.type}")
 
         text_prompt: str = "\n".join(text_content)
-        hlog(f"Transcribed prompt:\n{text_prompt}")
+        # hlog(f"Transcribed prompt:\n{text_prompt}")
 
         # Now make the request to the completion model with just a text-only prompt and no audio
         # Use the same decoding parameters as the original request
