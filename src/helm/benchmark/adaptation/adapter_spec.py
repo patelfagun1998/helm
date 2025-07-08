@@ -23,6 +23,7 @@ ADAPT_MULTIPLE_CHOICE_SEPARATE_METHODS: List[str] = [
 # Multimodal adaptation methods
 ADAPT_GENERATION_MULTIMODAL: str = "generation_multimodal"
 ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL: str = "multiple_choice_joint_multimodal"
+ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL_CHAIN_OF_THOUGHT: str = "multiple_choice_joint_multimodal_chain_of_thought"
 
 
 @dataclass(frozen=True)

@@ -7,6 +7,7 @@ from helm.benchmark.adaptation.adapter_spec import (
     ADAPT_MULTIPLE_CHOICE_JOINT,
     ADAPT_MULTIPLE_CHOICE_JOINT_CHAIN_OF_THOUGHT,
     ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL,
+    ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL_CHAIN_OF_THOUGHT,
     ADAPT_MULTIPLE_CHOICE_SEPARATE_CALIBRATED,
     ADAPT_MULTIPLE_CHOICE_SEPARATE_ORIGINAL,
     ADAPT_RANKING_BINARY,
@@ -20,6 +21,9 @@ from helm.benchmark.adaptation.adapters.language_modeling_adapter import Languag
 from helm.benchmark.adaptation.adapters.multimodal.generation_multimodal_adapter import GenerationMultimodalAdapter
 from helm.benchmark.adaptation.adapters.multimodal.multiple_choice_joint_multimodal_adapter import (
     MultipleChoiceJointMultimodalAdapter,
+)
+from helm.benchmark.adaptation.adapters.multimodal.multiple_choice_joint_multimodal_chain_of_thought_adapter import (
+    MultipleChoiceJointMultimodalChainOfThoughtAdapter,
 )
 from helm.benchmark.adaptation.adapters.multiple_choice_calibrated_adapter import MultipleChoiceCalibratedAdapter
 from helm.benchmark.adaptation.adapters.multiple_choice_joint_adapter import MultipleChoiceJointAdapter
@@ -62,6 +66,8 @@ class AdapterFactory:
             adapter = GenerationMultimodalAdapter(adapter_spec, tokenizer_service)
         elif method == ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL:
             adapter = MultipleChoiceJointMultimodalAdapter(adapter_spec, tokenizer_service)
+        elif method == ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL_CHAIN_OF_THOUGHT:
+            adapter = MultipleChoiceJointMultimodalChainOfThoughtAdapter(adapter_spec, tokenizer_service)
         else:
             raise ValueError(f"Invalid adaptation method: {method}")
 
