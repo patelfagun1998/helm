@@ -1,0 +1,43 @@
+# Task Description
+You will be provided with text from the internet.
+Evaluate whether the text contains any  of the following behaviours and if so, give their counts below:
+- sub goal setting behavior, where the writer breaks down the problem into smaller, intermediate goals.
+- Rule following - does the model follow the rules of the taxonomy
+- Error breakdown - could the model recognize individual errors
+
+The fules of the taxonomy are as follows:
+'substitution' is when the child substitutes one word/phrase/syllable for another. 
+'omission' is when the child omits one word/phrase/syllable. 
+'addition' is when the child adds one word/phrase/syllable. 
+'typically_developing' is when the child's speech is typical of a child of their age. 
+'stuttering' is when the child stutters, has difficulty speaking, repeats sounds/words or prolongs sounds/words
+
+With this context, please do the following:
+1. Count the number of distinct subgoal setting instances and provide the count between the tags <count> </count>. If the writer does not set sub goals, please provide a count of 0 as <count>0</count>.
+2. Determine wether the text showcases rule following and provide the bool between the tags <rule_bool> </rule_bool>
+3. Determine wether the text showcases error recognition and provide the bool between the tags <error_bool> </error_bool>
+
+# Output Format
+Format your response in markdown as follows:
+
+## Thoughts
+[Brief description describing what behavior was noticed and where backtracking occurred]
+
+## Does subgoal setting?
+[yes/no]
+
+## Number of subgoal setting steps
+<count> [1/2/...] </count>
+
+## Follows rules
+<rule_bool> [0/1] </rule_bool>
+
+## Recognizes erros
+<error_bool> [0/1] </error_bool>
+
+---
+
+Chain of Thought to analyze:
+{cot_text}
+
+Please provide your detailed analysis following the framework above. 
