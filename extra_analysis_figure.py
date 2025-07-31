@@ -88,43 +88,36 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, label1, labe
 # --- Data Organization with Dictionary Structure ---
 model_data = {
     'gpt-4o-audio': {
-        'reasoning': {'type_f1': 0.36, 'reasoning_type_f1': 0.20, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.36, 'noisy_type_f1': 0.29, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.30, 'male_type_f1': 0.41, 'female_type_f1': 0.24},
         'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.33, 'spanish_f1': 0.09, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 5.66, 'spanish_wer': 2.19}
     },
     'gemini-2.0-flash': {
-        'reasoning': {'type_f1': 0.46, 'reasoning_type_f1': 0.34, 'symp_f1': 0.18, 'reasoning_symp_f1': 0.25},
         'perturbation': {'type_f1': 0.46, 'noisy_type_f1': 0.33, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.564, 'female_binary_f1': 0.30, 'male_type_f1': 0.44, 'female_type_f1': 0.24},
         'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.35, 'spanish_f1': 0.20, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 4.7, 'spanish_wer': 1.5}
     },
     'gemini-2.0-flash-lite': {
-        'reasoning': {'type_f1': 0.19, 'reasoning_type_f1': 0.17, 'symp_f1': 0.41, 'reasoning_symp_f1': 0.19},
         'perturbation': {'type_f1': 0.19, 'noisy_type_f1': 0.14, 'symp_f1': 0.41, 'noisy_symp_f1': 0.4},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.31, 'male_type_f1': 0.24, 'female_type_f1': 0.09},
         'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.49, 'spanish_f1': 0.33, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 3.27, 'spanish_wer': 1.72}
     },
     'gpt-4o-mini-audio': {
-        'reasoning': {'type_f1': 0.15, 'reasoning_type_f1': 0.04, 'symp_f1': 0.43, 'reasoning_symp_f1': 0.006},
         'perturbation': {'type_f1': 0.15, 'noisy_type_f1': 0.05, 'symp_f1': 0.43, 'noisy_symp_f1': 0.42},
         'gender': {'male_binary_f1': 0.22, 'female_binary_f1': 0.16, 'male_type_f1': 0.17, 'female_type_f1': 0.11},
         'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.02, 'spanish_f1': 0.0, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 5.94, 'spanish_wer': 5.33}
     },
     'gpt-4o-audio-transcribe': {
-        'reasoning': {'type_f1': 0.41, 'reasoning_type_f1': 0.30, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.39},
         'perturbation': {'type_f1': 0.41, 'noisy_type_f1': 0.36, 'symp_f1': 0.31, 'noisy_symp_f1': 0.30},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.34, 'male_type_f1': 0.49, 'female_type_f1': 0.34},
         'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.27, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 2.73, 'spanish_wer': 1.66}
     },
     'gpt-4o-audio-mini-transcribe': {
-        'reasoning': {'type_f1': 0.42, 'reasoning_type_f1': 0.34, 'symp_f1': 0.31, 'reasoning_symp_f1': 0.35},
         'perturbation': {'type_f1': 0.42, 'noisy_type_f1': 0.34, 'symp_f1': 0.31, 'noisy_symp_f1': 0.31},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.29, 'male_type_f1': 0.5, 'female_type_f1': 0.34},
         'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.22, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 2.67, 'spanish_wer': 1.66}
     },
     'whispr+gpt4o': {
-        'reasoning': {'type_f1': 0.43, 'reasoning_type_f1': 0.32, 'symp_f1': 0.36, 'reasoning_symp_f1': 0.44},
         'perturbation': {'type_f1': 0.43, 'noisy_type_f1': 0.48, 'symp_f1': 0.36, 'noisy_symp_f1': 0.40},
         'gender': {'male_binary_f1': 0.29, 'female_binary_f1': 0.35, 'male_type_f1': 0.512, 'female_type_f1': 0.38},
         'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.16, 'spanish_f1': 0.04, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 7.16, 'spanish_wer': 2.135}
@@ -135,7 +128,6 @@ model_data = {
 models = list(model_data.keys())
 
 # Color schemes
-color_reasoning = ['#2CA4A2', '#D84546']  # Zero-shot vs Reasoning
 color_perturbation = ['#1f77b4', '#ff7f0e']  # Unperturbed vs Perturbed
 color_gender = ['#ea5545', '#87bc45']  # Male vs Female
 color_language = ['#edbf33', '#f46a9b', '#27aeef', '#ef476f']  # English vs French vs Dutch vs Spanish
@@ -160,9 +152,6 @@ def extract_data_arrays(models, data_dict, *keys):
     return arrays if len(arrays) > 1 else arrays[0]
 
 # Extract data arrays for plotting
-type_f1, reasoning_type_f1 = extract_data_arrays(models, model_data, 'reasoning.type_f1', 'reasoning.reasoning_type_f1')
-symp_f1, reasoning_symp_f1 = extract_data_arrays(models, model_data, 'reasoning.symp_f1', 'reasoning.reasoning_symp_f1')
-
 type_f1_pert, noisy_type_f1 = extract_data_arrays(models, model_data, 'perturbation.type_f1', 'perturbation.noisy_type_f1')
 symp_f1_pert, noisy_symp_f1 = extract_data_arrays(models, model_data, 'perturbation.symp_f1', 'perturbation.noisy_symp_f1')
 
@@ -179,20 +168,14 @@ spanish_scores_f1 = extract_data_arrays(models, model_data, 'language.spanish_f1
 spanish_scores_wer = extract_data_arrays(models, model_data, 'language.spanish_wer')
 
 # --- Create the figure and subplots ---
-fig_width, fig_height = 22, 6  # Made slightly taller to accommodate legends
-fig, axes = plt.subplots(1, 8, figsize=(fig_width, fig_height))
+fig_width, fig_height = 18, 6  # Adjusted width for 6 subplots instead of 8
+fig, axes = plt.subplots(1, 6, figsize=(fig_width, fig_height))
 
-# Plot configurations
+# Plot configurations (removed reasoning analysis)
 plot_configs = [
-    # Reasoning Analysis
-    (type_f1, reasoning_type_f1, 'Zero-Shot', 'Zero-Shot w/ Reasoning', 
-     color_reasoning, 'Disorder Type Diagnosis', 'Exact Match Score ↑', x_lim, True, None, None, None, None, None, None),
-    (symp_f1, reasoning_symp_f1, 'Zero-Shot Inference', '0-Shot Inference w/ Reasoning', 
-     color_reasoning, 'Symptom Diagnosis', 'Exact Match Score ↑', x_lim, False, None, None, None, None, None, None),
-    
     # Perturbation Analysis
     (type_f1_pert, noisy_type_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
+     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, True, None, None, None, None, None, None),
     (symp_f1_pert, noisy_symp_f1, 'Unperturbed', 'Perturbed', 
      color_perturbation, 'Symptom Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     
@@ -244,7 +227,7 @@ for i, (scores1, scores2, label1, label2, colors, title, x_label, xlim, show_y, 
             legend_labels[color_key] = [label1, label2]
 
 # Create legends at the bottom of the figure
-legend_positions = [0.125, 0.375, 0.625, 0.875]  # Centered positions for 4 legends
+legend_positions = [0.167, 0.5, 0.833]  # Centered positions for 3 legends
 legend_keys = list(legend_handles.keys())
 
 for i, (pos, key) in enumerate(zip(legend_positions, legend_keys)):
@@ -263,23 +246,21 @@ plt.subplots_adjust(bottom=0.18)  # Make more room for larger legends at bottom
 plt.savefig('extra_analysis_figure.png', dpi=300)
 plt.show()
 
-# --- Create 4 Separate Figures with 2 Subplots Each ---
+# --- Create 3 Separate Figures with 2 Subplots Each (removed reasoning) ---
 figure_titles = [
-    'Reasoning Analysis',
     'Perturbation Analysis', 
     'Gender Analysis',
     'Language Analysis'
 ]
 
-# Group plot configurations into pairs
+# Group plot configurations into pairs (removed reasoning pair)
 plot_pairs = [
-    plot_configs[0:2],  # Reasoning analysis (2 plots)
-    plot_configs[2:4],  # Perturbation analysis (2 plots)
-    plot_configs[4:6],  # Gender analysis (2 plots)
-    plot_configs[6:8],  # Language analysis (2 plots)
+    plot_configs[0:2],  # Perturbation analysis (2 plots)
+    plot_configs[2:4],  # Gender analysis (2 plots)
+    plot_configs[4:6],  # Language analysis (2 plots)
 ]
 
-# Create 4 separate figures
+# Create 3 separate figures
 for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs)):
     # Create figure with 2 subplots - make it taller for better spacing
     fig_pair, axes_pair = plt.subplots(1, 2, figsize=(16, 8))

@@ -2,6 +2,7 @@ from typing import List, Optional
 from helm.benchmark.adaptation.adapter_spec import (
     ADAPT_GENERATION_MULTIMODAL,
     ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL,
+    ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL_CHAIN_OF_THOUGHT,
     AdapterSpec,
 )
 from helm.benchmark.metrics.common_metric_specs import (
@@ -44,6 +45,26 @@ def _get_multiple_choice_joint_adapter_spec(
         random=None,
     )
 
+def _get_multiple_choice_joint_adapter_spec_cot(
+    input_noun: Optional[str],
+    max_train_instances: int = 0,
+    num_outputs: int = 1,
+) -> AdapterSpec:
+    return AdapterSpec(
+        method=ADAPT_MULTIPLE_CHOICE_JOINT_MULTIMODAL_CHAIN_OF_THOUGHT,
+        global_prefix="",
+        global_suffix=(
+                    "Let’s think step by step. Based on your reasoning, what is the single, "
+                    "most likely answer choice? Think through each possible option, backtrack if needed and verify your answer. Format your response as follows: "
+                    '"The correct answer is (insert only the letter of the option for answer here)".'
+                ),
+        input_prefix=f"{input_noun}: " if input_noun is not None else "",
+        input_suffix="\n",
+        output_suffix="\n",
+        max_train_instances=max_train_instances,
+        num_outputs=num_outputs,
+        max_tokens=4096,
+    ) 
 
 def _get_generation_adapter_spec(
     max_tokens: int,
@@ -92,10 +113,14 @@ def get_ultra_suite_disorder_breakdown_run_spec() -> RunSpec:
     scenario_spec = ScenarioSpec(
         class_name="helm.benchmark.scenarios.audio_language.ultra_suite_disorder_breakdown_scenario.UltraSuiteDisorderBreakdownScenario",  # noqa: E501
     )
-    adapter_spec: AdapterSpec = _get_multiple_choice_joint_adapter_spec(
-        input_noun=None, output_noun="Answer", max_train_instances=0
+    adapter_spec: AdapterSpec = _get_multiple_choice_joint_adapter_spec_cot(
+        input_noun=None, max_train_instances=0
     )
-    metric_specs: List[MetricSpec] = audio_classification_metric_specs()
+    metric_specs: List[MetricSpec] = [
+        MetricSpec(
+            class_name="helm.benchmark.metrics.gpqa_chain_of_thought_metric.GPQAChainOfThoughtMetric", args={}
+        ),
+    ]
     run_spec_name: str = "ultra_suite_classification_breakdown"
     return RunSpec(
         name=f"{run_spec_name}",
@@ -155,10 +180,14 @@ def get_ultra_suite_disorder_symptoms_run_spec() -> RunSpec:
     scenario_spec = ScenarioSpec(
         class_name="helm.benchmark.scenarios.audio_language.ultra_suite_disorder_symptoms_scenario.UltraSuiteDisorderSymptomsScenario",  # noqa: E501
     )
-    adapter_spec: AdapterSpec = _get_multiple_choice_joint_adapter_spec(
-        input_noun=None, output_noun="Answer", max_train_instances=0
+    adapter_spec: AdapterSpec = _get_multiple_choice_joint_adapter_spec_cot(
+        input_noun=None, max_train_instances=0
     )
-    metric_specs: List[MetricSpec] = audio_classification_metric_specs()
+    metric_specs: List[MetricSpec] = [
+        MetricSpec(
+            class_name="helm.benchmark.metrics.gpqa_chain_of_thought_metric.GPQAChainOfThoughtMetric", args={}
+        ),
+    ]
     run_spec_name: str = "ultra_suite_disorder_symptoms"
     return RunSpec(
         name=f"{run_spec_name}",

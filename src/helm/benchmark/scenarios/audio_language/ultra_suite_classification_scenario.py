@@ -15,6 +15,7 @@ from helm.benchmark.scenarios.scenario import (
 )
 from helm.common.media_object import MediaObject, MultimediaObject
 from helm.common.general import ensure_file_downloaded
+from helm.common.general import ensure_directory_exists
 
 
 def find_audio_json_pairs(directory: str) -> List[Tuple[str, str]]:
@@ -58,7 +59,7 @@ class UltraSuiteClassificationScenario(Scenario):
     The task is to classify whether the child speaker is typically developing or has a speech disorder.
     """
 
-    name = "speech_disorder"
+    name = "dutch"
     description = "A scenario for evaluating speech disorders in children"
     tags = ["audio", "classification", "speech_disorder"]
     HF_MAPPING_URL = "https://https://huggingface.co/datasets/SAA-Lab/SLPHelmUltraSuite"
@@ -74,9 +75,7 @@ class UltraSuiteClassificationScenario(Scenario):
         - A JSON file with annotations containing 'answer' field
         """
 
-        print(f"Downloading dataset from {UltraSuiteClassificationScenario.HF_MAPPING_URL} to {output_path}")
-        ensure_file_downloaded(source_url=UltraSuiteClassificationScenario.HF_MAPPING_URL, target_path=output_path)
-
+        ensure_directory_exists(output_path)
         instances: List[Instance] = []
         split: str = TEST_SPLIT
 

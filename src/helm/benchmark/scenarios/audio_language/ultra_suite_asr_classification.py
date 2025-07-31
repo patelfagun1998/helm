@@ -14,7 +14,7 @@ from helm.benchmark.scenarios.scenario import (
     Output,
 )
 from helm.common.media_object import MediaObject, MultimediaObject
-from helm.common.general import ensure_file_downloaded
+from helm.common.general import ensure_directory_exists, ensure_file_downloaded
 
 
 def find_audio_json_pairs(directory: str) -> List[Tuple[str, str]]:
@@ -55,7 +55,7 @@ class UltraSuiteASRClassificationScenario(Scenario):
     The task is to classify whether the child speaker is typically developing or has a speech disorder.
     """
 
-    name = "speech_disorder"
+    name = "spanish"
     description = "A scenario for evaluating speech disorders in children"
     tags = ["audio", "classification", "speech_disorder", "asr"]
     HF_MAPPING_URL = "https://https://huggingface.co/datasets/SAA-Lab/SLPHelmUltraSuite"
@@ -70,9 +70,7 @@ class UltraSuiteASRClassificationScenario(Scenario):
         - Audio files (e.g., .mp3)
         - A JSON file with annotations containing 'answer' field
         """
-        print(f"Downloading dataset from {UltraSuiteASRClassificationScenario.HF_MAPPING_URL} to {output_path}")
-        ensure_file_downloaded(source_url=UltraSuiteASRClassificationScenario.HF_MAPPING_URL, target_path=output_path)
-
+        ensure_directory_exists(output_path)
         instances: List[Instance] = []
         split: str = TEST_SPLIT
 
@@ -84,7 +82,7 @@ class UltraSuiteASRClassificationScenario(Scenario):
             # Load the annotation
             with open(json_path, "r") as f:
                 annotation = json.load(f)
-
+        
             # Get the correct answer and convert to label
             answer = annotation["disorder_class"]
             # Create references for each option
