@@ -18,7 +18,7 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, scores3, lab
     Plots a horizontal grouped bar chart on the given axes for 3 age groups.
     """
     num_models = len(models)
-    y_pos = np.arange(num_models)  # Positions for each model group on the y-axis
+    y_pos = np.arange(num_models)*1.75 # Positions for each model group on the y-axis
 
     # Three categories - use smaller bar height and adjust positions
     bar_height_3way = bar_height * 0.7  # Reduce bar thickness for 3-way comparison
@@ -32,7 +32,7 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, scores3, lab
     # Set y-axis ticks and labels (model names)
     ax.set_yticks(y_pos)
     if show_yticklabels:
-        ax.set_yticklabels(models, fontsize=8.5)
+        ax.set_yticklabels(models, fontsize=8.5, fontweight='bold')
     else:
         ax.set_yticklabels([''] * len(models))
 
@@ -115,13 +115,13 @@ transcription_wer = extract_age_group_data(models, age_group_data, 'transcriptio
 colors = ['#edbf33', '#f46a9b', '#27aeef']  # Yellow, Pink, Blue - similar to language colors
 
 # Chart parameters
-bar_height = 0.42
+bar_height = 0.6
 x_lim_symptom = 0.8
 x_lim_wer = 7.0
 
 # --- Create the figure with two subplots ---
-fig_width, fig_height = 16, 6
-fig, axes = plt.subplots(1, 2, figsize=(fig_width, fig_height))
+fig_width, fig_height = 10, 10
+fig, axes = plt.subplots(2, 1, figsize=(fig_width, fig_height))
 
 # --- Subplot 1: Symptom Classification Scores ---
 plot_horizontal_grouped_bar_chart(
@@ -140,7 +140,7 @@ plot_horizontal_grouped_bar_chart(
     '5-7 years', '8-10 years', '10+ years',
     colors[0], colors[1], colors[2],
     'Transcription Accuracy', 'Word Error Rate (WER) ↓', x_lim_wer, bar_height,
-    show_yticklabels=False
+    show_yticklabels=True
 )
 
 # Create legend at the bottom of the figure
@@ -150,41 +150,9 @@ fig.legend(['5-7 years', '8-10 years', '10+ years'],
 
 # Adjust layout to prevent overlap and make room for legends
 plt.tight_layout(pad=1.5, w_pad=2.5)
-plt.subplots_adjust(bottom=0.18)  # Make room for legend at bottom
+plt.subplots_adjust(bottom=0.18, hspace=0.5)  # Make room for legend at bottom
 
 # Show plot
 plt.savefig('age_group_analysis.png', dpi=300)
 
 plt.show()
-
-# --- Print summary statistics ---
-print("\n" + "="*80)
-print("AGE GROUP ANALYSIS SUMMARY - SYMPTOM CLASSIFICATION")
-print("="*80)
-print(f"{'Model':<25} {'5-7 years':<12} {'8-10 years':<12} {'10+ years':<12}")
-print("-"*80)
-for i, model in enumerate(models):
-    print(f"{model:<25} {symptom_scores[i,0]:<12.3f} {symptom_scores[i,1]:<12.3f} {symptom_scores[i,2]:<12.3f}")
-
-print("\n" + "="*80)
-print("AGE GROUP ANALYSIS SUMMARY - TRANSCRIPTION ACCURACY (WER)")
-print("="*80)
-print(f"{'Model':<25} {'5-7 years':<12} {'8-10 years':<12} {'10+ years':<12}")
-print("-"*80)
-for i, model in enumerate(models):
-    print(f"{model:<25} {transcription_wer[i,0]:<12.1f} {transcription_wer[i,1]:<12.1f} {transcription_wer[i,2]:<12.1f}")
-
-# Best performing models per age group
-print(f"\n{'='*50}")
-print("BEST PERFORMING MODELS BY AGE GROUP")
-print("="*50)
-print("Symptom Classification (highest scores):")
-age_group_names = ['5-7 years', '8-10 years', '10+ years']
-for i, age_group in enumerate(age_group_names):
-    best_model_idx = np.argmax(symptom_scores[:, i])
-    print(f"  {age_group}: {models[best_model_idx]} ({symptom_scores[best_model_idx, i]:.3f})")
-
-print("\nTranscription Accuracy (lowest WER):")
-for i, age_group in enumerate(age_group_names):
-    best_model_idx = np.argmin(transcription_wer[:, i])
-    print(f"  {age_group}: {models[best_model_idx]} ({transcription_wer[best_model_idx, i]:.1f})")
