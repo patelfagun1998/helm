@@ -14,7 +14,7 @@ from helm.benchmark.scenarios.scenario import (
     Output,
 )
 from helm.common.media_object import MediaObject, MultimediaObject
-from helm.common.file_utils import ensure_audio_file_exists_from_array
+from helm.common.audio_utils import ensure_audio_file_exists_from_array
 
 
 class UltraSuiteASRClassificationScenario(Scenario):
@@ -27,9 +27,6 @@ class UltraSuiteASRClassificationScenario(Scenario):
     name = "speech_disorder"
     description = "A scenario for evaluating speech disorders in children"
     tags = ["audio", "classification", "speech_disorder", "asr"]
-
-    # Classification options
-    options: List[str] = ["Healthy", "Unhealthy"]
 
     def get_instances(self, output_path: str) -> List[Instance]:
         """
@@ -51,6 +48,9 @@ class UltraSuiteASRClassificationScenario(Scenario):
         for idx, row in enumerate(tqdm(dataset["train"])):
 
             label = row["disorder_class"]
+            age = row["age"]
+            if float(age) < 10.0:
+                continue
 
             audio_path = row["audio"]
             unique_id = str(idx)

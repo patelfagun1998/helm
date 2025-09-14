@@ -39,7 +39,7 @@ class UltraSuiteASRTranscriptionScenario(Scenario):
         os.makedirs(audio_save_dir, exist_ok=True)
 
         print("Downloading SAA-Lab/SLPHelmUltraSuitePlus dataset...")
-        dataset = load_dataset("SAA-Lab/SLPHelmUltraSuitePlus")
+        dataset = load_dataset("fagunpatel98/manul-v4")
 
         instances: List[Instance] = []
         split: str = TEST_SPLIT
@@ -50,6 +50,9 @@ class UltraSuiteASRTranscriptionScenario(Scenario):
             # Load the annotation
             # Load the annotation
             label = row["disorder_class"]
+            age = row["age"]
+            if float(age) > 7:
+                continue
 
             audio_path = row["audio"]
             unique_id = str(idx)

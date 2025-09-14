@@ -14,7 +14,7 @@ from helm.benchmark.scenarios.scenario import (
     Output,
 )
 from helm.common.media_object import MediaObject, MultimediaObject
-from helm.common.file_utils import ensure_audio_file_exists_from_array
+from helm.common.audio_utils import ensure_audio_file_exists_from_array
 
 
 class UltraSuiteClassificationScenario(Scenario):
@@ -42,7 +42,7 @@ class UltraSuiteClassificationScenario(Scenario):
         os.makedirs(audio_save_dir, exist_ok=True)
 
         print("Downloading SAA-Lab/SLPHelmUltraSuitePlus dataset...")
-        dataset = load_dataset("SAA-Lab/SLPHelmUltraSuitePlus")
+        dataset = load_dataset("fagunpatel98/manul-v4")
 
         instances: List[Instance] = []
         split: str = TEST_SPLIT
@@ -52,6 +52,10 @@ class UltraSuiteClassificationScenario(Scenario):
             # Load the annotation
             label = row["disorder_class"]
             transcription = row["transcription"]
+            age = row["age"]
+
+            if float(age) < 10.0:
+                continue
 
             audio_path = row["audio"]
             unique_id = str(idx)
@@ -68,6 +72,7 @@ class UltraSuiteClassificationScenario(Scenario):
                 if option == label:
                     correct_label += 1
             if correct_label == 0:
+                print(label)
                 continue
 
             # Create the input with audio and instruction
