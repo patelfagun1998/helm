@@ -47,9 +47,9 @@ class UltraSuiteASRClassificationScenario(Scenario):
 
         for idx, row in enumerate(tqdm(dataset["train"])):
 
-            label = row["disorder_class"]
+            label = row["transcription"]
             age = row["age"]
-            if float(age) < 10.0:
+            if float(age) > 7.0:
                 continue
 
             audio_path = row["audio"]
@@ -57,12 +57,8 @@ class UltraSuiteASRClassificationScenario(Scenario):
             local_audio_name = f"{label}_{unique_id}.mp3"
             local_audio_path = os.path.join(audio_save_dir, local_audio_name)
             ensure_audio_file_exists_from_array(local_audio_path, row["audio"]["array"], row["audio"]["sampling_rate"])
-
             # Create references for each option
-            references: List[Reference] = []
-            for option in ["typically_developing", "speech_disorder"]:
-                reference = Reference(Output(text=option), tags=[CORRECT_TAG] if option == label else [])
-                references.append(reference)
+            references: List[Reference] = [Reference(Output(text=label), tags=[CORRECT_TAG])]
 
             # Create the input with audio and instruction
             content = [
@@ -71,5 +67,6 @@ class UltraSuiteASRClassificationScenario(Scenario):
 
             input = Input(multimedia_content=MultimediaObject(content))
             instances.append(Instance(input=input, references=references, split=split))
+
 
         return instances
