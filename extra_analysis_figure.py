@@ -57,20 +57,20 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, label1, labe
     # Set y-axis ticks and labels (model names)
     ax.set_yticks(y_pos)
     if show_yticklabels:
-        ax.set_yticklabels(models, fontsize=8.5)
+        ax.set_yticklabels(models, fontsize=12)
     else:
         ax.set_yticklabels([''] * len(models))
 
     ax.invert_yaxis()  # Display models from top to bottom
-    ax.tick_params(axis='y', labelsize=8.5)
+    ax.tick_params(axis='y', labelsize=12)
 
     # Set x-axis label and limits
-    ax.set_xlabel(x_label, fontsize=9)
+    ax.set_xlabel(x_label, fontsize=12)
     ax.set_xlim(0, xlim_upper)
-    ax.tick_params(axis='x', labelsize=8.5)
+    ax.tick_params(axis='x', labelsize=12)
 
     # Set title for the subplot
-    ax.set_title(title, fontsize=10, fontweight='bold')
+    ax.set_title(title, fontsize=14, fontweight='bold')
 
     # Add gridlines (vertical gridlines along the x-axis)
     ax.grid(True, linestyle='--', color='lightgray', alpha=0.7, axis='x')
@@ -175,19 +175,19 @@ fig, axes = plt.subplots(1, 6, figsize=(fig_width, fig_height))
 plot_configs = [
     # Perturbation Analysis
     (type_f1_pert, noisy_type_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, True, None, None, None, None, None, None),
+     color_perturbation, 'Disorder Type Diag.', 'Micro F1 Score ↑', x_lim, True, None, None, None, None, None, None),
     (symp_f1_pert, noisy_symp_f1, 'Unperturbed', 'Perturbed', 
-     color_perturbation, 'Symptom Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
+     color_perturbation, 'Symptom Diag.', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     
     # Gender Analysis
     (male_binary_f1, female_binary_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
+     color_gender, 'Disorder Diag.', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     (male_type_f1, female_type_f1, 'Male', 'Female', 
-     color_gender, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
+     color_gender, 'Disorder Type Diag.', 'Micro F1 Score ↑', x_lim, False, None, None, None, None, None, None),
     
     # Language Analysis (4 languages)
     (english_scores_f1, french_scores_f1, 'English', 'French', 
-     color_language, 'Disorder Diagnosis', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2], spanish_scores_f1, 'Spanish', color_language[3]),
+     color_language, 'Disorder Diag.', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2], spanish_scores_f1, 'Spanish', color_language[3]),
     (english_scores_wer, french_scores_wer, 'English', 'French', 
      color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2], spanish_scores_wer, 'Spanish', color_language[3]),
 ]
@@ -263,7 +263,7 @@ plot_pairs = [
 # Create 3 separate figures
 for fig_idx, (fig_title, plot_pair) in enumerate(zip(figure_titles, plot_pairs)):
     # Create figure with 2 subplots - make it taller for better spacing
-    fig_pair, axes_pair = plt.subplots(1, 2, figsize=(16, 8))
+    fig_pair, axes_pair = plt.subplots(1, 2, figsize=(17, 8))
     
     # Store legend handles for this figure
     pair_legend_handles = {}

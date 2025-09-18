@@ -49,10 +49,10 @@ fig, axes = plt.subplots(1, 4, figsize=(16, 4))
 
 # Plot data for each subplot
 subplot_data = [
-    (disorder_diagnosis_data, 'Disorder Diagnosis', 'Micro F1 Score ↑', (0.0, 1.0)),
+    (disorder_diagnosis_data, 'Disorder Diag.', 'Micro F1 Score ↑', (0.0, 1.0)),
     (transcription_accuracy_data, 'Transcription Accuracy', 'Word Error Rate ↓', (0, 6)),
-    (disorder_type_data, 'Disorder Type Diagnosis', 'Micro F1 Score ↑', (0.0, 1.0)),
-    (disorder_symptom_data, 'Disorder Symptom Diagnosis', 'Micro F1 Score ↑', (0.0, 1.0))
+    (disorder_type_data, 'Disorder Type Diag.', 'Micro F1 Score ↑', (0.0, 1.0)),
+    (disorder_symptom_data, 'Symptom Diag.', 'Micro F1 Score ↑', (0.0, 1.0))
 ]
 
 # Create horizontal bar plots
@@ -74,12 +74,12 @@ for idx, (data, title, xlabel, xlim) in enumerate(subplot_data):
     ax.set_yticks(y_pos)
     # Only show y-axis labels on the leftmost plot
     if idx == 0:
-        ax.set_yticklabels(models)
+        ax.set_yticklabels(models, fontsize=12)
     else:
         ax.set_yticklabels([])
     
-    ax.set_xlabel(xlabel)
-    ax.set_title(title, fontweight='bold')
+    ax.set_xlabel(xlabel, fontsize=12)
+    ax.set_title(title, fontweight='bold', fontsize=14)
     ax.set_xlim(xlim)
     ax.grid(axis='x', alpha=0.3)
     
@@ -91,6 +91,7 @@ for idx, (data, title, xlabel, xlim) in enumerate(subplot_data):
 plt.tight_layout()
 
 # Show the plot
+plt.savefig('Finetuning.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Optional: Save the figure

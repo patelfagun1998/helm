@@ -12,70 +12,70 @@ plt.rcParams['text.usetex'] = False
 MODEL_DATA = {
     'gpt-4o-audio': {
         'disorder_diagnosis': 0.44,
-        'asr_disorder_diagnosis': 0.02,
+        'asr_disorder_diagnosis': 0.4590,  # Updated from 0.02
         'disorder_type_classification': 0.36,
         'disorder_symptom_classification': 0.18,
         'transcription_accuracy': 2.25
     },
     'gemini-2.0-flash': {
         'disorder_diagnosis': 0.46,
-        'asr_disorder_diagnosis': 0.00,
+        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.00
         'disorder_type_classification': 0.46,
         'disorder_symptom_classification': 0.18,
         'transcription_accuracy': 0.94
     },
     'gemini-2.0-flash-lite': {
         'disorder_diagnosis': 0.46,
-        'asr_disorder_diagnosis': 0.01,
+        'asr_disorder_diagnosis': 0.4590,  # Updated from 0.01
         'disorder_type_classification': 0.19,
         'disorder_symptom_classification': 0.41,
         'transcription_accuracy': 0.83
     },
     'gpt-4o-mini-audio': {
         'disorder_diagnosis': 0.20,
-        'asr_disorder_diagnosis': 0.07,
+        'asr_disorder_diagnosis': 0.4838,  # Updated from 0.07
         'disorder_type_classification': 0.15,
         'disorder_symptom_classification': 0.43,
         'transcription_accuracy': 1.40
     },
     'gpt-4o-mini-transcribe': {
         'disorder_diagnosis': 0.56,
-        'asr_disorder_diagnosis': 0.21,
+        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.21
         'disorder_type_classification': 0.35,
         'disorder_symptom_classification': 0.31,
         'transcription_accuracy': 1.54
     },
     'gpt-4o-transcribe': {
         'disorder_diagnosis': 0.47,
-        'asr_disorder_diagnosis': 0.13,
+        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.13
         'disorder_type_classification': 0.38,
         'disorder_symptom_classification': 0.31,
         'transcription_accuracy': 1.31
     },
     'whispr+gpt4o': {
         'disorder_diagnosis': 0.47,
-        'asr_disorder_diagnosis': 0.00,
+        'asr_disorder_diagnosis': 0.4611,  # Updated from 0.00
         'disorder_type_classification': 0.43,
         'disorder_symptom_classification': 0.36,
         'transcription_accuracy': 2.84
     },
     'qwen2.5-omni-7b': {
         'disorder_diagnosis': 0.71,
-        'asr_disorder_diagnosis': 0.07,
+        'asr_disorder_diagnosis': 0.713,  # Updated from 0.07
         'disorder_type_classification': 0.71,
         'disorder_symptom_classification': 0.71,
         'transcription_accuracy': 2.71
     },
     'qwen2.5-omni-3b': {
         'disorder_diagnosis': 0.42,
-        'asr_disorder_diagnosis': 0.01,
+        'asr_disorder_diagnosis': 0.738,  # Updated from 0.01
         'disorder_type_classification': 0.44,
         'disorder_symptom_classification': 0.44,
         'transcription_accuracy': 4.98
     },
     'qwen2-audio-7b': {
         'disorder_diagnosis': 0.45,
-        'asr_disorder_diagnosis': 0.03,
+        'asr_disorder_diagnosis': 0.743,  # Updated from 0.03
         'disorder_type_classification': 0.33,
         'disorder_symptom_classification': 0.10,
         'transcription_accuracy': 2.29
@@ -89,28 +89,28 @@ MODEL_DATA = {
     },
     'Phi-4': {
         'disorder_diagnosis': 0.32,
-        'asr_disorder_diagnosis': 0.06,
+        'asr_disorder_diagnosis': 0.724,  # Updated from 0.06
         'disorder_type_classification': 0.37,
         'disorder_symptom_classification': 0.13,
         'transcription_accuracy': 6.36
     },
     'granite-speech-3.3-8b': {
         'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.03,
+        'asr_disorder_diagnosis': 0.746,  # Updated from 0.03
         'disorder_type_classification': 0.00,
         'disorder_symptom_classification': 0.00,
         'transcription_accuracy': 0.00
     },
     'granite-speech-3.2-8b': {
         'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.03,
+        'asr_disorder_diagnosis': 0.721,  # Updated from 0.03
         'disorder_type_classification': 0.00,
         'disorder_symptom_classification': 0.00,
         'transcription_accuracy': 13.50
     },
     'granite-speech-3.3-3b': {
         'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.04,
+        'asr_disorder_diagnosis': 0.739,  # Updated from 0.04
         'disorder_type_classification': 0.01,
         'disorder_symptom_classification': 0.20,
         'transcription_accuracy': 6.64
@@ -121,19 +121,19 @@ MODEL_DATA = {
 SCENARIOS = {
     'disorder_diagnosis': {
         'title': 'Disorder Diagnosis \n Micro F1 ↑',
-        'xlim_upper': 0.75
+        'xlim_upper': 0.9
     },
     'asr_disorder_diagnosis': {
         'title': 'ASR-Based Disorder Diagnosis \n Micro F1 ↑',
-        'xlim_upper': 0.75
+        'xlim_upper': 0.9
     },
     'disorder_type_classification': {
         'title': 'Disorder Type Classification \n Micro F1 ↑',
-        'xlim_upper': 0.75
+        'xlim_upper': 0.9
     },
     'disorder_symptom_classification': {
         'title': 'Disorder Symptom Classification \n Micro F1 ↑',
-        'xlim_upper': 0.75
+        'xlim_upper': 0.9
     },
     'transcription_accuracy': {
         'title': 'Transcription Accuracy \n WER ↓',
@@ -210,17 +210,17 @@ def plot_scenario(ax, models, scores, title_text, xlim_upper, show_labels=True):
     # Set y-axis ticks and labels (model names)
     ax.set_yticks(y_pos)
     if show_labels:
-        ax.set_yticklabels(models, fontsize=8.5)
+        ax.set_yticklabels(models, fontsize=12)
     else:
         ax.set_yticklabels([''] * len(models))  # Empty labels but keep ticks
     ax.invert_yaxis()  # To display models from top to bottom
 
     # Set x-axis label and limits
     ax.set_xlim(0, xlim_upper)
-    ax.tick_params(axis='x', labelsize=8.5)
+    ax.tick_params(axis='x', labelsize=12)
 
     # Set title for the subplot
-    ax.set_title(f"{title_text}", fontsize=10, fontweight='bold')
+    ax.set_title(f"{title_text}", fontsize=14, fontweight='bold')
 
     # Add both horizontal and vertical gridlines
     ax.grid(True, linestyle='--', color='lightgray', alpha=0.7)

@@ -32,20 +32,20 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, scores3, lab
     # Set y-axis ticks and labels (model names)
     ax.set_yticks(y_pos)
     if show_yticklabels:
-        ax.set_yticklabels(models, fontsize=8.5, fontweight='bold')
+        ax.set_yticklabels(models, fontsize=14)
     else:
         ax.set_yticklabels([''] * len(models))
 
     ax.invert_yaxis()  # Display models from top to bottom
-    ax.tick_params(axis='y', labelsize=8.5)
+    ax.tick_params(axis='y', labelsize=14)
 
     # Set x-axis label and limits
-    ax.set_xlabel(x_label, fontsize=9)
+    ax.set_xlabel(x_label, fontsize=14)
     ax.set_xlim(0, xlim_upper)
-    ax.tick_params(axis='x', labelsize=8.5)
+    ax.tick_params(axis='x', labelsize=14)
 
     # Set title for the subplot
-    ax.set_title(title, fontsize=10, fontweight='bold')
+    ax.set_title(title, fontsize=18, fontweight='bold')
 
     # Add gridlines (vertical gridlines along the x-axis)
     ax.grid(True, linestyle='--', color='lightgray', alpha=0.7, axis='x')
