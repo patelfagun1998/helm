@@ -10,129 +10,129 @@ plt.rcParams['text.usetex'] = False
 
 # Model-wise data structure - much cleaner and easier to maintain
 MODEL_DATA = {
-    'gpt-4o-audio': {
-        'disorder_diagnosis': 0.44,
-        'asr_disorder_diagnosis': 0.4590,  # Updated from 0.02
-        'disorder_type_classification': 0.36,
-        'disorder_symptom_classification': 0.18,
-        'transcription_accuracy': 2.25
+    'gemini-2.0-flash-lite': {
+        'disorder_diagnosis': 0.457,
+        'asr_disorder_diagnosis': 0.4590,
+        'disorder_type_classification': 0.180,
+        'disorder_symptom_classification': 0.415,
+        'transcription_accuracy': 0.51
     },
     'gemini-2.0-flash': {
-        'disorder_diagnosis': 0.46,
-        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.00
-        'disorder_type_classification': 0.46,
-        'disorder_symptom_classification': 0.18,
-        'transcription_accuracy': 0.94
-    },
-    'gemini-2.0-flash-lite': {
-        'disorder_diagnosis': 0.46,
-        'asr_disorder_diagnosis': 0.4590,  # Updated from 0.01
-        'disorder_type_classification': 0.19,
-        'disorder_symptom_classification': 0.41,
-        'transcription_accuracy': 0.83
+        'disorder_diagnosis': 0.458,
+        'asr_disorder_diagnosis': 0.4600,
+        'disorder_type_classification': 0.294,
+        'disorder_symptom_classification': 0.180,
+        'transcription_accuracy': 1.00
     },
     'gpt-4o-mini-audio': {
-        'disorder_diagnosis': 0.20,
-        'asr_disorder_diagnosis': 0.4838,  # Updated from 0.07
-        'disorder_type_classification': 0.15,
-        'disorder_symptom_classification': 0.43,
-        'transcription_accuracy': 1.40
+        'disorder_diagnosis': 0.204,
+        'asr_disorder_diagnosis': 0.4838,
+        'disorder_type_classification': 0.125,
+        'disorder_symptom_classification': 0.433,
+        'transcription_accuracy': 5.64
+    },
+    'gpt-4o-audio': {
+        'disorder_diagnosis': 0.439,
+        'asr_disorder_diagnosis': 0.4590,
+        'disorder_type_classification': 0.298,
+        'disorder_symptom_classification': 0.507,
+        'transcription_accuracy': 5.40
     },
     'gpt-4o-mini-transcribe': {
-        'disorder_diagnosis': 0.56,
-        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.21
-        'disorder_type_classification': 0.35,
-        'disorder_symptom_classification': 0.31,
-        'transcription_accuracy': 1.54
+        'disorder_diagnosis': 0.456,
+        'asr_disorder_diagnosis': 0.4600,
+        'disorder_type_classification': 0.358,
+        'disorder_symptom_classification': 0.310,
+        'transcription_accuracy': 0.37
     },
     'gpt-4o-transcribe': {
-        'disorder_diagnosis': 0.47,
-        'asr_disorder_diagnosis': 0.4600,  # Updated from 0.13
-        'disorder_type_classification': 0.38,
-        'disorder_symptom_classification': 0.31,
-        'transcription_accuracy': 1.31
+        'disorder_diagnosis': 0.474,
+        'asr_disorder_diagnosis': 0.4600,
+        'disorder_type_classification': 0.382,
+        'disorder_symptom_classification': 0.325,
+        'transcription_accuracy': 1.00
     },
     'whispr+gpt4o': {
-        'disorder_diagnosis': 0.47,
-        'asr_disorder_diagnosis': 0.4611,  # Updated from 0.00
-        'disorder_type_classification': 0.43,
-        'disorder_symptom_classification': 0.36,
-        'transcription_accuracy': 2.84
+        'disorder_diagnosis': 0.473,
+        'asr_disorder_diagnosis': 0.4611,
+        'disorder_type_classification': 0.399,
+        'disorder_symptom_classification': 0.395,
+        'transcription_accuracy': 0.33
     },
     'qwen2.5-omni-7b': {
-        'disorder_diagnosis': 0.71,
-        'asr_disorder_diagnosis': 0.713,  # Updated from 0.07
-        'disorder_type_classification': 0.71,
-        'disorder_symptom_classification': 0.71,
-        'transcription_accuracy': 2.71
+        'disorder_diagnosis': 0.455,
+        'asr_disorder_diagnosis': 0.713,
+        'disorder_type_classification': 0.345,
+        'disorder_symptom_classification': 0.163,
+        'transcription_accuracy': 2.17
     },
     'qwen2.5-omni-3b': {
-        'disorder_diagnosis': 0.42,
-        'asr_disorder_diagnosis': 0.738,  # Updated from 0.01
-        'disorder_type_classification': 0.44,
-        'disorder_symptom_classification': 0.44,
-        'transcription_accuracy': 4.98
+        'disorder_diagnosis': 0.556,
+        'asr_disorder_diagnosis': 0.738,
+        'disorder_type_classification': 0.396,
+        'disorder_symptom_classification': 0.155,
+        'transcription_accuracy': 4.90
     },
     'qwen2-audio-7b': {
-        'disorder_diagnosis': 0.45,
-        'asr_disorder_diagnosis': 0.743,  # Updated from 0.03
-        'disorder_type_classification': 0.33,
-        'disorder_symptom_classification': 0.10,
-        'transcription_accuracy': 2.29
+        'disorder_diagnosis': 0.447,
+        'asr_disorder_diagnosis': 0.743,
+        'disorder_type_classification': 0.335,
+        'disorder_symptom_classification': 0.097,
+        'transcription_accuracy': 0.86
     },
     'qwen-audio-chat': {
-        'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.00,
-        'disorder_type_classification': 0.00,
-        'disorder_symptom_classification': 0.00,
-        'transcription_accuracy': 12.3
+        'disorder_diagnosis': 0.000,
+        'asr_disorder_diagnosis': 0.747,
+        'disorder_type_classification': 0.000,
+        'disorder_symptom_classification': 0.000,
+        'transcription_accuracy': 1.87
     },
     'Phi-4': {
-        'disorder_diagnosis': 0.32,
-        'asr_disorder_diagnosis': 0.724,  # Updated from 0.06
-        'disorder_type_classification': 0.37,
-        'disorder_symptom_classification': 0.13,
-        'transcription_accuracy': 6.36
+        'disorder_diagnosis': 0.325,
+        'asr_disorder_diagnosis': 0.724,
+        'disorder_type_classification': 0.371,
+        'disorder_symptom_classification': 0.127,
+        'transcription_accuracy': 2.54
     },
     'granite-speech-3.3-8b': {
-        'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.746,  # Updated from 0.03
-        'disorder_type_classification': 0.00,
-        'disorder_symptom_classification': 0.00,
-        'transcription_accuracy': 0.00
-    },
-    'granite-speech-3.2-8b': {
-        'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.721,  # Updated from 0.03
-        'disorder_type_classification': 0.00,
-        'disorder_symptom_classification': 0.00,
-        'transcription_accuracy': 13.50
+        'disorder_diagnosis': 0.000,
+        'asr_disorder_diagnosis': 0.746,
+        'disorder_type_classification': 0.000,
+        'disorder_symptom_classification': 0.000,
+        'transcription_accuracy': 9.11
     },
     'granite-speech-3.3-3b': {
-        'disorder_diagnosis': 0.00,
-        'asr_disorder_diagnosis': 0.739,  # Updated from 0.04
-        'disorder_type_classification': 0.01,
-        'disorder_symptom_classification': 0.20,
-        'transcription_accuracy': 6.64
+        'disorder_diagnosis': 0.000,
+        'asr_disorder_diagnosis': 0.739,
+        'disorder_type_classification': 0.000,
+        'disorder_symptom_classification': 0.000,
+        'transcription_accuracy': 2.34
+    },
+    'granite-speech-3.2-8b': {
+        'disorder_diagnosis': 0.000,
+        'asr_disorder_diagnosis': 0.721,
+        'disorder_type_classification': 0.007,
+        'disorder_symptom_classification': 0.200,
+        'transcription_accuracy': 2.25
     }
 }
 
 # Scenario configuration
 SCENARIOS = {
     'disorder_diagnosis': {
-        'title': 'Disorder Diagnosis \n Micro F1 ↑',
+        'title': 'Disorder Diag. \n Micro F1 ↑',
         'xlim_upper': 0.9
     },
     'asr_disorder_diagnosis': {
-        'title': 'ASR-Based Disorder Diagnosis \n Micro F1 ↑',
+        'title': 'ASR Disorder Diag. \n Micro F1 ↑',
         'xlim_upper': 0.9
     },
     'disorder_type_classification': {
-        'title': 'Disorder Type Classification \n Micro F1 ↑',
+        'title': 'Disorder Type Diag. \n Micro F1 ↑',
         'xlim_upper': 0.9
     },
     'disorder_symptom_classification': {
-        'title': 'Disorder Symptom Classification \n Micro F1 ↑',
+        'title': 'Symptom Diag. \n Micro F1 ↑',
         'xlim_upper': 0.9
     },
     'transcription_accuracy': {
@@ -262,4 +262,5 @@ def create_comparison_plot():
 
 # Create and display the plot
 fig = create_comparison_plot()
+plt.savefig('AllModelsV2.png', dpi=300, bbox_inches='tight')
 plt.show()
