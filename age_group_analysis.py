@@ -32,17 +32,17 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, scores3, lab
     # Set y-axis ticks and labels (model names)
     ax.set_yticks(y_pos)
     if show_yticklabels:
-        ax.set_yticklabels(models, fontsize=14)
+        ax.set_yticklabels(models, fontsize=16)
     else:
         ax.set_yticklabels([''] * len(models))
 
     ax.invert_yaxis()  # Display models from top to bottom
-    ax.tick_params(axis='y', labelsize=14)
+    ax.tick_params(axis='y', labelsize=16)
 
     # Set x-axis label and limits
-    ax.set_xlabel(x_label, fontsize=14)
+    ax.set_xlabel(x_label, fontsize=16)
     ax.set_xlim(0, xlim_upper)
-    ax.tick_params(axis='x', labelsize=14)
+    ax.tick_params(axis='x', labelsize=16)
 
     # Set title for the subplot
     ax.set_title(title, fontsize=18, fontweight='bold')
@@ -143,16 +143,12 @@ plot_horizontal_grouped_bar_chart(
     show_yticklabels=True
 )
 
-# Create legend at the bottom of the figure
 fig.legend(['5-7 years', '8-10 years', '10+ years'], 
-          loc='lower center', bbox_to_anchor=(0.5, 0.02), 
-          ncol=3, fontsize=12, frameon=True)
+          loc='center left', 
+          ncol=1, fontsize=12, frameon=True)
 
 # Adjust layout to prevent overlap and make room for legends
-plt.tight_layout(pad=1.5, w_pad=2.5)
-plt.subplots_adjust(bottom=0.18, hspace=0.5)  # Make room for legend at bottom
 
 # Show plot
-plt.savefig('age_group_analysis.png', dpi=300)
-
+plt.savefig('Age.png', dpi=300)
 plt.show()
