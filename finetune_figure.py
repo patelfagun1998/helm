@@ -18,28 +18,28 @@ colors = ['#d62728', '#2ca02c', '#ff7f0e']  # Red, Green, Orange
 # Sample data for each subplot (you should replace with actual data)
 # Subplot 1: Disorder Diagnosis (Micro F1 Score)
 disorder_diagnosis_data = {
-    'Base Model': [0.71, 0.42, 0.45],
+    'Base Model': [0.455, 0.556, 0.447],
     'Finetuned w/o Markers': [0.67, 0.25, 0.36], 
     'Finetuned w/ Markers': [0.95, 0.89, 0.30]
 }
 
 # Subplot 2: Transcription Accuracy (Word Error Rate - lower is better)
 transcription_accuracy_data = {
-    'Base Model': [2.17, 4.98, 2.3],
+    'Base Model': [2.17, 4.98, 0.86],
     'Finetuned w/o Markers': [1.76, 0.95, 0.52],
     'Finetuned w/ Markers': [1.4, 0.97, 0.58]
 }
 
 # Subplot 3: Disorder Type Diagnosis (Micro F1 Score)
 disorder_type_data = {
-    'Base Model': [0.71, 0.44, 0.33],
-    'Finetuned w/o Markers': [0.40, 0.63, 0.27],
-    'Finetuned w/ Markers': [0.95, 0.89, 0.21]
+    'Base Model': [0.345, 0.396, 0.33],
+    'Finetuned w/o Markers': [0.40, 0.36, 0.27],
+    'Finetuned w/ Markers': [0.97, 0.91, 0.132]
 }
 
 # Subplot 4: Disorder Symptom Diagnosis (Micro F1 Score)  
 disorder_symptom_data = {
-    'Base Model': [0.71, 0.44, 0.10],
+    'Base Model': [0.163, 0.155, 0.10],
     'Finetuned w/o Markers': [0.34, 0.16, 0.08],
     'Finetuned w/ Markers': [0.95, 0.90, 0.07]
 }
@@ -82,13 +82,14 @@ for idx, (data, title, xlabel, xlim) in enumerate(subplot_data):
     ax.set_title(title, fontweight='bold', fontsize=14)
     ax.set_xlim(xlim)
     ax.grid(axis='x', alpha=0.3)
-    
-    # Add legend only to the first subplot, positioned outside the plot area
-    if idx == 0:
-        ax.legend(bbox_to_anchor=(0.98, 0.98), loc='upper right', frameon=True, fancybox=True, shadow=True)
+    ax.tick_params(axis='x', labelsize=12)  # Increase x-axis tick label font size
 
-# Adjust layout to prevent overlap
+# Add common legend at bottom center
+fig.legend(conditions, bbox_to_anchor=(0.5, 0.09), loc='upper center', ncol=3, frameon=True, fancybox=True, shadow=True, fontsize=10)
+
+# Adjust layout to prevent overlap and make room for legend
 plt.tight_layout()
+plt.subplots_adjust(bottom=0.2)
 
 # Show the plot
 plt.savefig('Finetuning.png', dpi=300, bbox_inches='tight')
