@@ -11,109 +11,109 @@ plt.rcParams['text.usetex'] = False
 # Model-wise data structure - much cleaner and easier to maintain
 MODEL_DATA = {
     'gemini-2.0-flash-lite': {
-        'disorder_diagnosis': 0.457,
+        'disorder_diagnosis': 0.454,
         'asr_disorder_diagnosis': 0.4590,
         'disorder_type_classification': 0.180,
-        'disorder_symptom_classification': 0.415,
-        'transcription_accuracy': 0.51
+        'disorder_symptom_classification': 0.373,
+        'transcription_accuracy': 0.83
     },
     'gemini-2.0-flash': {
-        'disorder_diagnosis': 0.458,
+        'disorder_diagnosis': 0.461,
         'asr_disorder_diagnosis': 0.4600,
-        'disorder_type_classification': 0.294,
-        'disorder_symptom_classification': 0.180,
-        'transcription_accuracy': 1.00
+        'disorder_type_classification': 0.298,
+        'disorder_symptom_classification': 0.191,
+        'transcription_accuracy': 0.931
     },
     'gpt-4o-mini-audio': {
-        'disorder_diagnosis': 0.204,
+        'disorder_diagnosis': 0.117,
         'asr_disorder_diagnosis': 0.4838,
-        'disorder_type_classification': 0.125,
-        'disorder_symptom_classification': 0.433,
-        'transcription_accuracy': 5.64
+        'disorder_type_classification': 0.131,
+        'disorder_symptom_classification': 0.352,
+        'transcription_accuracy': 2.92
     },
     'gpt-4o-audio': {
-        'disorder_diagnosis': 0.439,
+        'disorder_diagnosis': 0.458,
         'asr_disorder_diagnosis': 0.4590,
-        'disorder_type_classification': 0.298,
-        'disorder_symptom_classification': 0.507,
-        'transcription_accuracy': 5.40
+        'disorder_type_classification': 0.366,
+        'disorder_symptom_classification': 0.538,
+        'transcription_accuracy': 2.29
     },
     'gpt-4o-mini-transcribe': {
-        'disorder_diagnosis': 0.456,
+        'disorder_diagnosis': 0.466,
         'asr_disorder_diagnosis': 0.4600,
-        'disorder_type_classification': 0.358,
-        'disorder_symptom_classification': 0.310,
-        'transcription_accuracy': 0.37
+        'disorder_type_classification': 0.365,
+        'disorder_symptom_classification': 0.297,
+        'transcription_accuracy': 1.61
     },
     'gpt-4o-transcribe': {
-        'disorder_diagnosis': 0.474,
+        'disorder_diagnosis': 0.480,
         'asr_disorder_diagnosis': 0.4600,
-        'disorder_type_classification': 0.382,
-        'disorder_symptom_classification': 0.325,
-        'transcription_accuracy': 1.00
+        'disorder_type_classification': 0.381,
+        'disorder_symptom_classification': 0.316,
+        'transcription_accuracy': 1.267
     },
     'whispr+gpt4o': {
-        'disorder_diagnosis': 0.473,
+        'disorder_diagnosis': 0.484,
         'asr_disorder_diagnosis': 0.4611,
         'disorder_type_classification': 0.399,
-        'disorder_symptom_classification': 0.395,
-        'transcription_accuracy': 0.33
+        'disorder_symptom_classification': 0.378,
+        'transcription_accuracy': 2.668
     },
     'qwen2.5-omni-7b': {
         'disorder_diagnosis': 0.455,
-        'asr_disorder_diagnosis': 0.713,
-        'disorder_type_classification': 0.345,
+        'asr_disorder_diagnosis': 0.468,
+        'disorder_type_classification': 0.347,
         'disorder_symptom_classification': 0.163,
-        'transcription_accuracy': 2.17
+        'transcription_accuracy': 2.084
     },
     'qwen2.5-omni-3b': {
         'disorder_diagnosis': 0.556,
-        'asr_disorder_diagnosis': 0.738,
-        'disorder_type_classification': 0.396,
+        'asr_disorder_diagnosis': 0.459,
+        'disorder_type_classification': 0.394,
         'disorder_symptom_classification': 0.155,
-        'transcription_accuracy': 4.90
+        'transcription_accuracy': 5.346
     },
     'qwen2-audio-7b': {
-        'disorder_diagnosis': 0.447,
-        'asr_disorder_diagnosis': 0.743,
-        'disorder_type_classification': 0.335,
-        'disorder_symptom_classification': 0.097,
-        'transcription_accuracy': 0.86
+        'disorder_diagnosis': 0.460,
+        'asr_disorder_diagnosis': 0.477,
+        'disorder_type_classification': 0.284,
+        'disorder_symptom_classification': 0.073,
+        'transcription_accuracy': 2.449
     },
     'qwen-audio-chat': {
         'disorder_diagnosis': 0.000,
-        'asr_disorder_diagnosis': 0.747,
+        'asr_disorder_diagnosis': 0.460,
         'disorder_type_classification': 0.000,
         'disorder_symptom_classification': 0.000,
-        'transcription_accuracy': 1.87
+        'transcription_accuracy': 9.549
     },
     'Phi-4': {
-        'disorder_diagnosis': 0.325,
-        'asr_disorder_diagnosis': 0.724,
-        'disorder_type_classification': 0.371,
-        'disorder_symptom_classification': 0.127,
-        'transcription_accuracy': 2.54
+        'disorder_diagnosis': 0.552,
+        'asr_disorder_diagnosis': 0.474,
+        'disorder_type_classification': 0.318,
+        'disorder_symptom_classification': 0.135,
+        'transcription_accuracy': 2.288
     },
     'granite-speech-3.3-8b': {
         'disorder_diagnosis': 0.000,
-        'asr_disorder_diagnosis': 0.746,
+        'asr_disorder_diagnosis': 0.473,
         'disorder_type_classification': 0.000,
         'disorder_symptom_classification': 0.000,
-        'transcription_accuracy': 9.11
+        'transcription_accuracy': 5.094
     },
     'granite-speech-3.3-3b': {
         'disorder_diagnosis': 0.000,
-        'asr_disorder_diagnosis': 0.739,
+        'asr_disorder_diagnosis': 0.492,
         'disorder_type_classification': 0.000,
         'disorder_symptom_classification': 0.000,
-        'transcription_accuracy': 2.34
+        'transcription_accuracy': 2.564
     },
     'granite-speech-3.2-8b': {
-        'disorder_diagnosis': 0.000,
-        'asr_disorder_diagnosis': 0.721,
-        'disorder_type_classification': 0.007,
-        'disorder_symptom_classification': 0.200,
-        'transcription_accuracy': 2.25
+        'disorder_diagnosis': 0.004,
+        'asr_disorder_diagnosis': 0.484,
+        'disorder_type_classification': 0.028,
+        'disorder_symptom_classification': 0.268,
+        'transcription_accuracy': 2.535
     }
 }
 

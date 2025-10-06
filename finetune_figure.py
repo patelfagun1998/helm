@@ -15,33 +15,33 @@ conditions = ['Base Model', 'Finetuned w/o Markers', 'Finetuned w/ Markers']
 # Define colors for each condition
 colors = ['#d62728', '#2ca02c', '#ff7f0e']  # Red, Green, Orange
 
-# Sample data for each subplot (you should replace with actual data)
+# Sample data for each subplot (updated with actual data from table)
 # Subplot 1: Disorder Diagnosis (Micro F1 Score)
 disorder_diagnosis_data = {
-    'Base Model': [0.455, 0.556, 0.447],
-    'Finetuned w/o Markers': [0.67, 0.25, 0.36], 
-    'Finetuned w/ Markers': [0.95, 0.89, 0.30]
+    'Base Model': [0.455, 0.556, 0.460],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct
+    'Finetuned w/o Markers': [0.482, 0.541, 0.366],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (no asterisk)
+    'Finetuned w/ Markers': [0.504, 0.540, 0.314]   # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (with asterisk)
 }
 
 # Subplot 2: Transcription Accuracy (Word Error Rate - lower is better)
 transcription_accuracy_data = {
-    'Base Model': [2.17, 4.98, 0.86],
-    'Finetuned w/o Markers': [1.76, 0.95, 0.52],
-    'Finetuned w/ Markers': [1.4, 0.97, 0.58]
+    'Base Model': [2.084, 5.346, 2.449],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct
+    'Finetuned w/o Markers': [1.762, 0.996, 0.572],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (no asterisk)
+    'Finetuned w/ Markers': [1.206, 1.036, 0.574]   # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (with asterisk)
 }
 
 # Subplot 3: Disorder Type Diagnosis (Micro F1 Score)
 disorder_type_data = {
-    'Base Model': [0.345, 0.396, 0.33],
-    'Finetuned w/o Markers': [0.40, 0.36, 0.27],
-    'Finetuned w/ Markers': [0.97, 0.91, 0.132]
+    'Base Model': [0.347, 0.394, 0.284],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct
+    'Finetuned w/o Markers': [0.413, 0.364, 0.271],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (no asterisk)
+    'Finetuned w/ Markers': [0.390, 0.386, 0.207]   # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (with asterisk)
 }
 
 # Subplot 4: Disorder Symptom Diagnosis (Micro F1 Score)  
 disorder_symptom_data = {
-    'Base Model': [0.163, 0.155, 0.10],
-    'Finetuned w/o Markers': [0.34, 0.16, 0.08],
-    'Finetuned w/ Markers': [0.95, 0.90, 0.07]
+    'Base Model': [0.163, 0.155, 0.073],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct
+    'Finetuned w/o Markers': [0.355, 0.158, 0.080],  # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (no asterisk)
+    'Finetuned w/ Markers': [0.262, 0.155, 0.073]   # qwen2.5-omni-7b, qwen2.5-omni-3b, qwen2-audio-7b-instruct (with asterisk)
 }
 
 # Create figure with 4 subplots

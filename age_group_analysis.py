@@ -61,32 +61,32 @@ def plot_horizontal_grouped_bar_chart(ax, models, scores1, scores2, scores3, lab
 # Each model contains symptom classification scores and transcription WER scores for 3 age groups
 age_group_data = {
     'gpt-4o-audio': {
-        'symptom_classification': {'5 - 7 y/o': 0.42, '8 - 10 y/o': 0.511, '10+ y/o': 0.60},
-        'transcription_wer': {'5 - 7 y/o': 5.63, '8 - 10 y/o': 6.05, '10+ y/o': 4.16}
+        'disorder_type_classification': {'5 - 7 y/o': 0.561, '8 - 10 y/o': 0.336, '10+ y/o': 0.261},
+        'transcription_wer': {'5 - 7 y/o': 5.630, '8 - 10 y/o': 6.052, '10+ y/o': 4.162}
     },
     'gemini-2.0-flash': {
-        'symptom_classification': {'5 - 7 y/o': 0.21, '8 - 10 y/o': 0.18, '10+ y/o': 0.13},
-        'transcription_wer': {'5 - 7 y/o': 4.34, '8 - 10 y/o': 4.45, '10+ y/o': 2.96}
+        'disorder_type_classification': {'5 - 7 y/o': 0.475, '8 - 10 y/o': 0.269, '10+ y/o': 0.200},
+        'transcription_wer': {'5 - 7 y/o': 4.346, '8 - 10 y/o': 4.452, '10+ y/o': 2.960}
     },
     'gemini-2.0-flash-lite': {
-        'symptom_classification': {'5 - 7 y/o': 0.32, '8 - 10 y/o': 0.43, '10+ y/o': 0.49},
-        'transcription_wer': {'5 - 7 y/o': 3.39, '8 - 10 y/o': 3.45, '10+ y/o': 2.65}
+        'disorder_type_classification': {'5 - 7 y/o': 0.306, '8 - 10 y/o': 0.161, '10+ y/o': 0.106},
+        'transcription_wer': {'5 - 7 y/o': 3.290, '8 - 10 y/o': 3.458, '10+ y/o': 2.650}
     },
     'gpt-4o-mini-audio': {
-        'symptom_classification': {'5 - 7 y/o': 0.32, '8 - 10 y/o': 0.416, '10+ y/o': 0.57},
-        'transcription_wer': {'5 - 7 y/o': 4.4, '8 - 10 y/o': 5.2, '10+ y/o': 5.0}
+        'disorder_type_classification': {'5 - 7 y/o': 0.232, '8 - 10 y/o': 0.120, '10+ y/o': 0.072},
+        'transcription_wer': {'5 - 7 y/o': 4.416, '8 - 10 y/o': 5.166, '10+ y/o': 5.008}
     },
     'gpt-4o-audio-transcribe': {
-        'symptom_classification': {'5 - 7 y/o': 0.34, '8 - 10 y/o': 0.34, '10+ y/o': 0.31},
-        'transcription_wer': {'5 - 7 y/o': 4.27, '8 - 10 y/o': 4.67, '10+ y/o': 3.34}
+        'disorder_type_classification': {'5 - 7 y/o': 0.496, '8 - 10 y/o': 0.354, '10+ y/o': 0.289},
+        'transcription_wer': {'5 - 7 y/o': 4.276, '8 - 10 y/o': 4.674, '10+ y/o': 3.342}
     },
     'gpt-4o-audio-mini-transcribe': {
-        'symptom_classification': {'5 - 7 y/o': 0.32, '8 - 10 y/o': 0.31, '10+ y/o': 0.27},
-        'transcription_wer': {'5 - 7 y/o': 5.4, '8 - 10 y/o': 5.46, '10+ y/o': 3.68}
+        'disorder_type_classification': {'5 - 7 y/o': 0.491, '8 - 10 y/o': 0.343, '10+ y/o': 0.254},
+        'transcription_wer': {'5 - 7 y/o': 5.404, '8 - 10 y/o': 5.466, '10+ y/o': 3.684}
     },
     'whispr+gpt4o': {
-        'symptom_classification': {'5 - 7 y/o': 0.33, '8 - 10 y/o': 0.4, '10+ y/o': 0.4},
-        'transcription_wer': {'5 - 7 y/o': 10.89, '8 - 10 y/o': 10.26, '10+ y/o': 4.86}
+        'disorder_type_classification': {'5 - 7 y/o': 0.522, '8 - 10 y/o': 0.391, '10+ y/o': 0.393},
+        'transcription_wer': {'5 - 7 y/o': 10.898, '8 - 10 y/o': 10.226, '10+ y/o': 4.866}
     }
 }
 
@@ -108,7 +108,7 @@ def extract_age_group_data(models, data_dict, metric_type, age_group_keys):
     return np.array(data_matrix)
 
 # Extract data arrays for plotting
-symptom_scores = extract_age_group_data(models, age_group_data, 'symptom_classification', age_group_keys)
+disorder_type_scores = extract_age_group_data(models, age_group_data, 'disorder_type_classification', age_group_keys)
 transcription_wer = extract_age_group_data(models, age_group_data, 'transcription_wer', age_group_keys)
 
 # Color scheme for the 3 age groups (matching extra_analysis_figure style)
@@ -123,13 +123,13 @@ x_lim_wer = 7.0
 fig_width, fig_height = 10, 10
 fig, axes = plt.subplots(2, 1, figsize=(fig_width, fig_height))
 
-# --- Subplot 1: Symptom Classification Scores ---
+# --- Subplot 1: Disorder Type Classification Scores ---
 plot_horizontal_grouped_bar_chart(
     axes[0], models, 
-    symptom_scores[:, 0], symptom_scores[:, 1], symptom_scores[:, 2],
+    disorder_type_scores[:, 0], disorder_type_scores[:, 1], disorder_type_scores[:, 2],
     '5-7 years', '8-10 years', '10+ years',
     colors[0], colors[1], colors[2],
-    'Symptom Classification', 'Micro F1 Score ↑', x_lim_symptom, bar_height,
+    'Disorder Type Classification', 'Micro F1 Score ↑', x_lim_symptom, bar_height,
     show_yticklabels=True
 )
 

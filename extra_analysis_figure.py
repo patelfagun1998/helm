@@ -90,37 +90,37 @@ model_data = {
     'gpt-4o-audio': {
         'perturbation': {'type_f1': 0.36, 'noisy_type_f1': 0.29, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.30, 'male_type_f1': 0.41, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.16, 'french_f1': 0.30, 'dutch_f1': 0.33, 'spanish_f1': 0.09, 'english_wer': 2.25, 'french_wer': 4.45, 'dutch_wer': 5.66, 'spanish_wer': 2.19}
+        'language': {'english_f1': 0.324, 'french_f1': 0.5885, 'dutch_f1': 0.3231, 'spanish_f1': 0.0952, 'english_wer': 2.29, 'french_wer': 1.234, 'dutch_wer': 5.663, 'spanish_wer': 2.194}
     },
     'gemini-2.0-flash': {
         'perturbation': {'type_f1': 0.46, 'noisy_type_f1': 0.33, 'symp_f1': 0.18, 'noisy_symp_f1': 0.18},
         'gender': {'male_binary_f1': 0.564, 'female_binary_f1': 0.30, 'male_type_f1': 0.44, 'female_type_f1': 0.24},
-        'language': {'english_f1': 0.33, 'french_f1': 0.49, 'dutch_f1': 0.35, 'spanish_f1': 0.20, 'english_wer': 0.94, 'french_wer': 5.9, 'dutch_wer': 4.7, 'spanish_wer': 1.5}
+        'language': {'english_f1': 0.322, 'french_f1': 0.5365, 'dutch_f1': 0.3843, 'spanish_f1': 0.2043, 'english_wer': 0.931, 'french_wer': 1.196, 'dutch_wer': 4.708, 'spanish_wer': 1.542}
     },
     'gemini-2.0-flash-lite': {
         'perturbation': {'type_f1': 0.19, 'noisy_type_f1': 0.14, 'symp_f1': 0.41, 'noisy_symp_f1': 0.4},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.31, 'male_type_f1': 0.24, 'female_type_f1': 0.09},
-        'language': {'english_f1': 0.34, 'french_f1': 0.27, 'dutch_f1': 0.49, 'spanish_f1': 0.33, 'english_wer': 0.83, 'french_wer': 4.95, 'dutch_wer': 3.27, 'spanish_wer': 1.72}
+        'language': {'english_f1': 0.330, 'french_f1': 0.3498, 'dutch_f1': 0.4965, 'spanish_f1': 0.3320, 'english_wer': 0.83, 'french_wer': 0.877, 'dutch_wer': 3.276, 'spanish_wer': 1.720}
     },
     'gpt-4o-mini-audio': {
         'perturbation': {'type_f1': 0.15, 'noisy_type_f1': 0.05, 'symp_f1': 0.43, 'noisy_symp_f1': 0.42},
         'gender': {'male_binary_f1': 0.22, 'female_binary_f1': 0.16, 'male_type_f1': 0.17, 'female_type_f1': 0.11},
-        'language': {'english_f1': 0.21, 'french_f1': 0.10, 'dutch_f1': 0.02, 'spanish_f1': 0.0, 'english_wer': 1.4, 'french_wer': 5.27, 'dutch_wer': 5.94, 'spanish_wer': 5.33}
+        'language': {'english_f1': 0.113, 'french_f1': 0.6215, 'dutch_f1': 0.0214, 'spanish_f1': 0.0, 'english_wer': 2.92, 'french_wer': 1.211, 'dutch_wer': 5.942, 'spanish_wer': 5.330}
     },
     'gpt-4o-audio-transcribe': {
         'perturbation': {'type_f1': 0.41, 'noisy_type_f1': 0.36, 'symp_f1': 0.31, 'noisy_symp_f1': 0.30},
         'gender': {'male_binary_f1': 0.58, 'female_binary_f1': 0.34, 'male_type_f1': 0.49, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.47, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.27, 'english_wer': 1.31, 'french_wer': 4.27, 'dutch_wer': 2.73, 'spanish_wer': 1.66}
+        'language': {'english_f1': 0.373, 'french_f1': 0.7667, 'dutch_f1': 0.4856, 'spanish_f1': 0.2721, 'english_wer': 1.267, 'french_wer': 0.807, 'dutch_wer': 2.734, 'spanish_wer': 1.664}
     },
     'gpt-4o-audio-mini-transcribe': {
         'perturbation': {'type_f1': 0.42, 'noisy_type_f1': 0.34, 'symp_f1': 0.31, 'noisy_symp_f1': 0.31},
         'gender': {'male_binary_f1': 0.56, 'female_binary_f1': 0.29, 'male_type_f1': 0.5, 'female_type_f1': 0.34},
-        'language': {'english_f1': 0.56, 'french_f1': 0.49, 'dutch_f1': 0.48, 'spanish_f1': 0.22, 'english_wer': 1.54, 'french_wer': 4.41, 'dutch_wer': 2.67, 'spanish_wer': 1.66}
+        'language': {'english_f1': 0.344, 'french_f1': 0.7349, 'dutch_f1': 0.4884, 'spanish_f1': 0.2296, 'english_wer': 1.61, 'french_wer': 0.871, 'dutch_wer': 2.678, 'spanish_wer': 1.662}
     },
     'whispr+gpt4o': {
         'perturbation': {'type_f1': 0.43, 'noisy_type_f1': 0.48, 'symp_f1': 0.36, 'noisy_symp_f1': 0.40},
         'gender': {'male_binary_f1': 0.29, 'female_binary_f1': 0.35, 'male_type_f1': 0.512, 'female_type_f1': 0.38},
-        'language': {'english_f1': 0.37, 'french_f1': 0.36, 'dutch_f1': 0.16, 'spanish_f1': 0.04, 'english_wer': 2.87, 'french_wer': 7.51, 'dutch_wer': 7.16, 'spanish_wer': 2.135}
+        'language': {'english_f1': 0.391, 'french_f1': 0.5184, 'dutch_f1': 0.1594, 'spanish_f1': 0.0448, 'english_wer': 2.668, 'french_wer': 1.200, 'dutch_wer': 7.166, 'spanish_wer': 2.314}
     }
 }
 
@@ -187,9 +187,9 @@ plot_configs = [
     
     # Language Analysis (4 languages)
     (english_scores_f1, french_scores_f1, 'English', 'French', 
-     color_language, 'Disorder Diag.', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2], spanish_scores_f1, 'Spanish', color_language[3]),
+     color_language, 'Disorder Diag.', 'Macro F1 Score ↑', x_lim, False, dutch_scores_f1, 'Dutch', color_language[2], None, None, None),
     (english_scores_wer, french_scores_wer, 'English', 'French', 
-     color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2], spanish_scores_wer, 'Spanish', color_language[3]),
+     color_language, 'Transcription Accuracy', 'Word Error Rate (WER) ↓', xlim_upper_wer, False, dutch_scores_wer, 'Dutch', color_language[2], None, None, None),
 ]
 
 # Store legend handles for each unique color scheme
